@@ -21,13 +21,14 @@ export const globalStyles = css`
     line-height: 1.6;
     background-color: #8ada4d;
     /* background-color: red; */
+    overflow-x: hidden;
 
     @media (max-width: 900px) {
     }
   }
 
   body {
-    max-width: 700px;
+    /* max-width: 700px; */
     margin: auto;
     background-color: hsl(
       -90,
@@ -42,21 +43,23 @@ export const globalStyles = css`
     transform: rotate(-6deg);
     transform-origin: bottom right;
 
-    &::before,
-    &::after {
+    &::before {
       content: '';
-      background-color: inherit;
+      /* background-color: inherit; */
       background: inherit;
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 200px;
+      width: 200%;
     }
     &::before {
-      left: -199px;
+      left: -50%;
+      z-index: -1;
+      box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16),
+        0 -3px 6px rgba(0, 0, 0, 0.23);
     }
-    &::after {
+    /* &::after {
       right: -199px;
-    }
+    } */
   }
 `;

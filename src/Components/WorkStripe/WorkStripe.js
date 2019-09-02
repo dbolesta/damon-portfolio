@@ -1,44 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import WorkCard from '../WorkCard';
+
 const WorkStripeContainer = styled.div`
-  background-color: white;
   text-align: left;
   padding: 2rem;
-  /* box-shadow: var(--work-stripe-box-shadow); */
-  /* good new green */
-  /* background-color: #3db958; */
-  /* background-color: hsl(130, 70%, 75%); */
-  /* background-color: ${props =>
-    props.green ? 'hsl(130, 70%, 75%)' : 'hsl(8, 70%, 75%)'}; */
+  background-color: ${props => props.bgColor || 'white'};
+  position: relative;
+`;
 
+const WorkStripeName = styled.h2`
+  background-color: #565656;
+  color: transparent;
+  display: inline-block;
+  margin: 0;
+  text-align: left;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 
-background-color: ${props => props.bgColor || 'white'};
-  /* background: rgb(61, 185, 88); */
-  /* background: linear-gradient(
-    0deg,
-    rgba(61, 185, 88, 1) 35%,
-    rgba(71, 228, 105, 1) 100%
-  ); */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 6rem;
 
-  h3 {
-    background-color: maroon;
-    display: inline-block;
-    margin: 0;
-    text-align: left;
-  }
+  z-index: -1;
+`;
+
+const WorkStripeWrapper = styled.div`
+  /* border: 1px solid red; */
+  /* width: 100vw; */
+  overflow-x: scroll;
+`;
+
+const WorkCardsContainer = styled.div`
+  display: flex;
 `;
 
 const WorkStripe = props => {
+  // const boxes = [];
+
+  // for (let x = 0; x < 3; x++) {
+  //   boxes.push(x);
+  // }
+
   return (
     <WorkStripeContainer
       className="rotate-theme"
       bgColor={props.bgColor}
     >
-      <h3>Name Of Category, from props</h3>
-      <div>
-        <div style={{ border: '1px solid black' }}>test content</div>
-      </div>
+      <WorkStripeName>{props.category}</WorkStripeName>
+      <WorkStripeWrapper>
+        <WorkCardsContainer>
+          {[1, 2, 3, 4, 5].map(box => {
+            return <WorkCard title={box} />;
+          })}
+        </WorkCardsContainer>
+      </WorkStripeWrapper>
     </WorkStripeContainer>
   );
 };

@@ -3,9 +3,11 @@ import './App.css';
 
 import Header from './Components/Header';
 import WorkStripe from './Components/WorkStripe';
+import Footer from './Components/Footer';
 
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { globalStyles } from './Styles/global';
+import { theme } from './Styles/theme';
 
 const GlobalStyle = createGlobalStyle`
   ${globalStyles}
@@ -13,14 +15,23 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <React.Fragment>
-      <GlobalStyle />
-      <div className="App">
-        <Header />
-        <WorkStripe bgColor="hsl(130, 70%, 75%)" />
-        <WorkStripe bgColor="hsl(8, 70%, 75%)" />
-      </div>
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+        <GlobalStyle />
+        <div className="App">
+          <Header />
+          <WorkStripe
+            bgColor={theme.workStripeColors.green}
+            category="Sites"
+          />
+          <WorkStripe
+            bgColor={theme.workStripeColors.red}
+            category="Games"
+          />
+          <Footer />
+        </div>
+      </React.Fragment>
+    </ThemeProvider>
   );
 }
 
