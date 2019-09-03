@@ -10,28 +10,10 @@ let starStyles = {
 
 const Star = styled.span`
   position: absolute;
-  /* right: 40vw;
-  top: 30%; */
   top: ${starStyles.top};
   left: ${starStyles.left};
   opacity: ${starStyles.opacity};
-
-
-  /* right: ${getRandomIntInclusive(1, 99)}vw;
-  top: ${getRandomIntInclusive(1, 99)}%; */
   color: #eddd85;
-
-  /* have font and opacity be random range */
 `;
 
 export default Star;
-
-// const Star = props => {
-//   return (
-//     <div>
-//       <span>*</span>
-//     </div>
-//   );
-// };
-
-// export default Star;
