@@ -53,40 +53,29 @@ const TechIcons = styled.ul`
 `;
 
 const WorkCard = props => {
+  const { category, description, image, tech, title } = props.data;
+
+  console.log(props.data);
+
   return (
     <WorkCardContainer>
       <WorkCardWrapper>
-        <h4>Title Number {props.title}</h4>
+        <h4>{title[0].text}</h4>
         <div className="left">
-          <img src={imgPlaceholder} alt="Placeholder imgs :)" />
+          <img src={image.url} alt={image.alt} />
         </div>
         <div className="right">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Minima, non. Voluptatibus sunt ad nisi necessitatibus
-            dolorum veniam, quam minima nam?
-          </p>
+          <p>{description[0].text}</p>
           <TechIcons>
-            <li>
-              <span role="img" aria-label="test emoji 1">
-                🤣
-              </span>
-            </li>
-            <li>
-              <span role="img" aria-label="test emoji 2">
-                😜
-              </span>
-            </li>
-            <li>
-              <span role="img" aria-label="test emoji 3">
-                🤡
-              </span>
-            </li>
-            <li>
-              <span role="img" aria-label="test emoji 4">
-                🧐
-              </span>
-            </li>
+            {tech.map(t => {
+              const { name, icon } = t;
+              return (
+                <li>
+                  <img src={icon.url} alt={name[0].text} />
+                  <span>{name[0].text}</span>
+                </li>
+              );
+            })}
           </TechIcons>
         </div>
       </WorkCardWrapper>

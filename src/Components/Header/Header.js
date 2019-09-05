@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
     font-family: 'Varela Round';
     font-size: 7rem;
     font-weight: 100;
-    padding-top: 8rem;
+    padding-top: 2rem;
     color: #f6dd3b;
     background-color: inherit;
     position: relative;

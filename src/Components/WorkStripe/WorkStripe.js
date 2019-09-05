@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import WorkCard from '../WorkCard';
 
+console.log('Ayyyy, big boy');
+
 const WorkStripeContainer = styled.div`
   text-align: left;
   padding: 2rem;
@@ -40,11 +42,8 @@ const WorkCardsContainer = styled.div`
 `;
 
 const WorkStripe = props => {
-  // const boxes = [];
-
-  // for (let x = 0; x < 3; x++) {
-  //   boxes.push(x);
-  // }
+  console.log(`inside Workstripe ${props.category}`);
+  console.log(props.data);
 
   return (
     <WorkStripeContainer
@@ -54,8 +53,8 @@ const WorkStripe = props => {
       <WorkStripeName>{props.category}</WorkStripeName>
       <WorkStripeWrapper>
         <WorkCardsContainer>
-          {[1, 2, 3, 4, 5].map(box => {
-            return <WorkCard title={box} />;
+          {props.data.map(work => {
+            return <WorkCard data={work} />;
           })}
         </WorkCardsContainer>
       </WorkStripeWrapper>
