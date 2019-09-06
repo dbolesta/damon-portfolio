@@ -6,9 +6,10 @@ import imgPlaceholder from '../../Images/website_preview_placeholder_tall.png';
 const WorkCardContainer = styled.div`
   /* padding: 0.5rem; */
   border-radius: 5px;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
+  background-color: #f1fffe;
   margin: 1rem;
-  min-width: 28rem;
+  min-width: 34rem;
   overflow: hidden;
 
   /* -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
@@ -25,7 +26,8 @@ const WorkCardWrapper = styled.div`
 
   h4 {
     flex-basis: 100%;
-    background-color: green;
+    background-color: #b3e0df;
+    padding: 0.5rem 0;
     text-align: center;
     margin: 0;
   }
@@ -34,13 +36,22 @@ const WorkCardWrapper = styled.div`
     flex-basis: 50%;
     img {
       width: 100%;
+      display: block;
     }
   }
 
   .right {
     flex-basis: 25%;
     flex-grow: 1;
-    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    p {
+      padding: 0.4rem;
+      margin: 0;
+    }
   }
 `;
 
@@ -50,6 +61,20 @@ const TechIcons = styled.ul`
   padding-left: 0;
   align-items: center;
   justify-content: space-around;
+
+  width: 100%;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+    width: 100%;
+
+    img {
+      width: 1.4rem;
+    }
+  }
 `;
 
 const WorkCard = props => {
