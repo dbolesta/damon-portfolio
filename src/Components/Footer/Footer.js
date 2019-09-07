@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { getRandomIntInclusive } from '../../Utils/utils';
 
-import Star from '../Star';
+// import Star from '../Star';
 
 const FooterContainer = styled.footer`
   /* background-color: hsl(-90, 90%, 24%); */
@@ -102,7 +102,7 @@ const Cloud = styled.span`
   background-color: #6e98d0;
   position: absolute;
   bottom: 0;
-  /* left: 18rem; */
+  left: ${props => props.leftValue}%;
   opacity: 0.7;
   animation: ${cloudGlide('8rem')} 7s linear infinite;
 
@@ -126,6 +126,17 @@ const Cloud = styled.span`
     top: -32px;
     right: 17px;
   }
+`;
+
+// need to prettier-ignore because it will remove the . between integer and $
+// prettier-ignore
+const Star = styled.span`
+  position: absolute;
+  top: ${props => props.topValue}%;
+  left: ${props => props.leftValue}%;
+  opacity: 0.${props => props.opacityValue};
+  font-size: 1.${props => props.fontSizeValue}rem;
+  color: #eddd85;
 `;
 
 const StarTwo = styled.div`
@@ -181,18 +192,15 @@ const Footer = props => {
   // create stars
   const randStars = [];
 
-  function starStyle() {
-    return {
-      top: `${getRandomIntInclusive(1, 99)}%`,
-      left: `${getRandomIntInclusive(1, 99)}%`,
-      opacity: `0.${getRandomIntInclusive(4, 9)}`,
-      fontSize: `1.${getRandomIntInclusive(0, 5)}rem`
-    };
-  }
-
   for (let x = 0; x < 69; x++) {
     randStars.push(
-      <Star style={starStyle()} key={x}>
+      <Star
+        key={x}
+        topValue={getRandomIntInclusive(1, 99)}
+        leftValue={getRandomIntInclusive(1, 99)}
+        opacityValue={getRandomIntInclusive(4, 9)}
+        fontSizeValue={getRandomIntInclusive(0, 5)}
+      >
         *
       </Star>
     );
@@ -201,14 +209,8 @@ const Footer = props => {
   // create clouds
   const clouds = [];
 
-  function cloudStyle(x) {
-    return {
-      left: `${x}%`
-    };
-  }
-
   for (let x = -15; x < 105; x += 5) {
-    clouds.push(<Cloud style={cloudStyle(x)}></Cloud>);
+    clouds.push(<Cloud key={x} leftValue={x} />);
   }
 
   // create mountains
