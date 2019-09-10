@@ -54,12 +54,13 @@ const MountainsContainer = styled.div`
 const Mountain = styled.div`
   width: 0;
   height: 0;
-  border-left: ${props => props.width} solid transparent;
-  border-right: ${props => props.width} solid transparent;
-  border-bottom: ${props => props.height} solid #483d8b;
+  border-left: ${props => props.widthValue}vw solid transparent;
+  border-right: ${props => props.widthValue}vw solid transparent;
+  border-bottom: ${props => props.heightValue}vh solid
+    ${props => props.colorValue};
   bottom: 0;
   position: absolute;
-  left: ${props => props.left};
+  left: ${props => props.leftValue}%;
 `;
 
 const Mountain2 = styled.div`
@@ -208,12 +209,39 @@ const Footer = props => {
 
   // create clouds
   const clouds = [];
-
   for (let x = -15; x < 105; x += 5) {
     clouds.push(<Cloud key={x} leftValue={x} />);
   }
 
   // create mountains
+
+  const mountains = [];
+
+  // bg
+  for (let x = 0; x < 100; x += 10) {
+    mountains.push(
+      <Mountain
+        key={x}
+        colorValue="#322b61"
+        widthValue={getRandomIntInclusive(3, 7)}
+        heightValue={getRandomIntInclusive(13, 30)}
+        leftValue={x}
+      />
+    );
+  }
+
+  // fg
+  for (let x = -5; x < 100; x += 10) {
+    mountains.push(
+      <Mountain
+        key={x}
+        colorValue="#483d8b"
+        widthValue={getRandomIntInclusive(4, 7)}
+        heightValue={getRandomIntInclusive(15, 35)}
+        leftValue={x}
+      />
+    );
+  }
 
   return (
     <FooterContainer>
@@ -229,29 +257,7 @@ const Footer = props => {
 
         <CloudsContainer>{clouds}</CloudsContainer>
 
-        <MountainsContainer>
-          <Mountain2 height="40vh" width="50px" left="5%" />
-          <Mountain2 height="210px" width="30px" left="15%" />
-          <Mountain2 height="100px" width="80px" left="25%" />
-          <Mountain2 height="150px" width="50px" left="35%" />
-          <Mountain2 height="210px" width="30px" left="45%" />
-          <Mountain2 height="100px" width="80px" left="55%" />
-          <Mountain2 height="100px" width="80px" left="65%" />
-          <Mountain2 height="150px" width="50px" left="75%" />
-          <Mountain2 height="210px" width="30px" left="85%" />
-          <Mountain2 height="210px" width="30px" left="95%" />
-
-          <Mountain height="50vh" width="20px" left="0%" />
-          <Mountain height="40vh" width="50px" left="10%" />
-          <Mountain height="210px" width="30px" left="20%" />
-          <Mountain height="100px" width="80px" left="30%" />
-          <Mountain height="150px" width="50px" left="40%" />
-          <Mountain height="210px" width="30px" left="50%" />
-          <Mountain height="100px" width="80px" left="60%" />
-          <Mountain height="100px" width="80px" left="70%" />
-          <Mountain height="150px" width="50px" left="80%" />
-          <Mountain height="210px" width="30px" left="90%" />
-        </MountainsContainer>
+        <MountainsContainer>{mountains}</MountainsContainer>
       </FooterArtContainer>
     </FooterContainer>
   );
