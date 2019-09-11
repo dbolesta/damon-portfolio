@@ -1,19 +1,23 @@
-// import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { getRandomIntInclusive } from '../../Utils/utils';
 
-let starStyles = {
-  top: `${getRandomIntInclusive(1, 99)}vw`,
-  left: `${getRandomIntInclusive(1, 99)}%`,
-  opacity: `${getRandomIntInclusive(4, 9)}`
-};
-
-const Star = styled.span`
+// prettier-ignore
+const StarSVG = styled.svg`
   position: absolute;
-  top: ${starStyles.top};
-  left: ${starStyles.left};
-  opacity: ${starStyles.opacity};
-  color: #eddd85;
+  top: ${props => props.topValue}%;
+  left: ${props => props.leftValue}%;
+  opacity: 0.${props => props.opacityValue};
+  transform: rotate(${props => props.rotateValue}deg);
+  fill: #eddd85;
 `;
+
+const Star = props => {
+  return (
+    <StarSVG {...props}>
+      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
+    </StarSVG>
+  );
+};
 
 export default Star;

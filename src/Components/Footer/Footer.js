@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { getRandomIntInclusive } from '../../Utils/utils';
 
-// import Star from '../Star';
+import Star from '../Star';
 
 const FooterContainer = styled.footer`
   /* background-color: hsl(-90, 90%, 24%); */
@@ -20,16 +20,9 @@ const FooterArtContainer = styled.div`
   height: 100%;
 `;
 
-const Moon = styled.div`
-  width: 250px;
-  height: 250px;
-  border-radius: 250px;
-  display: none;
-  position: absolute;
-  right: 30px;
-  top: 45px;
-  background-color: #eddd85;
-`;
+// ****
+// Moon
+// ****
 
 const MoonTwo = styled.div`
   position: absolute;
@@ -43,6 +36,10 @@ const MoonTwo = styled.div`
   box-shadow: inset -37px -9px 0 15px #f3d076;
   border-radius: 50%;
 `;
+
+// ****
+// Mountains
+// ****
 
 const MountainsContainer = styled.div`
   position: absolute;
@@ -63,16 +60,9 @@ const Mountain = styled.div`
   left: ${props => props.leftValue}%;
 `;
 
-const Mountain2 = styled.div`
-  width: 0;
-  height: 0;
-  border-left: ${props => props.width} solid transparent;
-  border-right: ${props => props.width} solid transparent;
-  border-bottom: ${props => props.height} solid #322b61;
-  bottom: 0;
-  position: absolute;
-  left: ${props => props.left};
-`;
+// ****
+// Stars
+// ****
 
 const StarsContainer = styled.div`
   left: 0;
@@ -81,6 +71,70 @@ const StarsContainer = styled.div`
   position: absolute;
   height: 90%;
 `;
+
+// need to prettier-ignore because it will remove the . between integer and $
+// prettier-ignore
+// const Star = styled.span`
+//   position: absolute;
+//   top: ${props => props.topValue}%;
+//   left: ${props => props.leftValue}%;
+//   opacity: 0.${props => props.opacityValue};
+//   font-size: 1.${props => props.fontSizeValue}rem;
+//   color: #eddd85;
+// `;
+
+const StarTwo = styled.div`
+  margin: 50px 0;
+  position: relative;
+  display: block;
+  color: red;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid red;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+
+  &:before {
+    border-bottom: 80px solid red;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45px;
+    left: -65px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+  }
+  &:after {
+    position: absolute;
+    display: block;
+    color: red;
+    top: 3px;
+    left: -105px;
+    width: 0px;
+    height: 0px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid red;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+  }
+`;
+
+const StarThree = props => {
+  return (
+    <svg height="25" fill="#eddd85" width="23">
+      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
+    </svg>
+  );
+};
+
+// ***
+// Clouds
+// ***
 
 const cloudGlide = marginLeft => keyframes`
   100% {
@@ -129,66 +183,6 @@ const Cloud = styled.span`
   }
 `;
 
-// need to prettier-ignore because it will remove the . between integer and $
-// prettier-ignore
-const Star = styled.span`
-  position: absolute;
-  top: ${props => props.topValue}%;
-  left: ${props => props.leftValue}%;
-  opacity: 0.${props => props.opacityValue};
-  font-size: 1.${props => props.fontSizeValue}rem;
-  color: #eddd85;
-`;
-
-const StarTwo = styled.div`
-  margin: 50px 0;
-  position: relative;
-  display: block;
-  color: red;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid red;
-  border-left: 100px solid transparent;
-  transform: rotate(35deg);
-
-  &:before {
-    border-bottom: 80px solid red;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    position: absolute;
-    height: 0;
-    width: 0;
-    top: -45px;
-    left: -65px;
-    display: block;
-    content: '';
-    transform: rotate(-35deg);
-  }
-  &:after {
-    position: absolute;
-    display: block;
-    color: red;
-    top: 3px;
-    left: -105px;
-    width: 0px;
-    height: 0px;
-    border-right: 100px solid transparent;
-    border-bottom: 70px solid red;
-    border-left: 100px solid transparent;
-    transform: rotate(-70deg);
-    content: '';
-  }
-`;
-
-const StarThree = props => {
-  return (
-    <svg height="25" width="23" class="star rating" data-rating="1">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
-    </svg>
-  );
-};
-
 const Footer = props => {
   // create stars
   const randStars = [];
@@ -200,7 +194,8 @@ const Footer = props => {
         topValue={getRandomIntInclusive(1, 99)}
         leftValue={getRandomIntInclusive(1, 99)}
         opacityValue={getRandomIntInclusive(4, 9)}
-        fontSizeValue={getRandomIntInclusive(0, 5)}
+        sizeValue={getRandomIntInclusive(9, 23)}
+        rotateValue={getRandomIntInclusive(0, 72)} // 72deg of rotation is max of visible difference for a 5 point star
       >
         *
       </Star>
@@ -248,7 +243,6 @@ const Footer = props => {
       <FooterArtContainer>
         <StarsContainer>{randStars}</StarsContainer>
 
-        <Moon />
         <MoonTwo />
 
         <StarTwo />
