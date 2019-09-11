@@ -4,6 +4,8 @@ import { getRandomIntInclusive } from '../../Utils/utils';
 
 import Star from '../Star';
 
+import starSVG from '../../Images/star.svg';
+
 const FooterContainer = styled.footer`
   /* background-color: hsl(-90, 90%, 24%); */
   background: rgb(60, 15, 114);
@@ -12,7 +14,7 @@ const FooterContainer = styled.footer`
     rgba(60, 15, 114, 1) 35%,
     rgba(58, 25, 146, 1) 100%
   );
-  height: 70vh;
+  height: 90vh;
 `;
 
 const FooterArtContainer = styled.div`
@@ -83,45 +85,13 @@ const StarsContainer = styled.div`
 //   color: #eddd85;
 // `;
 
-const StarTwo = styled.div`
-  margin: 50px 0;
-  position: relative;
-  display: block;
-  color: red;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid red;
-  border-left: 100px solid transparent;
-  transform: rotate(35deg);
-
-  &:before {
-    border-bottom: 80px solid red;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    position: absolute;
-    height: 0;
-    width: 0;
-    top: -45px;
-    left: -65px;
-    display: block;
-    content: '';
-    transform: rotate(-35deg);
-  }
-  &:after {
-    position: absolute;
-    display: block;
-    color: red;
-    top: 3px;
-    left: -105px;
-    width: 0px;
-    height: 0px;
-    border-right: 100px solid transparent;
-    border-bottom: 70px solid red;
-    border-left: 100px solid transparent;
-    transform: rotate(-70deg);
-    content: '';
-  }
+const StarImg = styled.img`
+  position: absolute;
+  top: ${props => props.topValue}%;
+  left: ${props => props.leftValue}%;
+  opacity: 0.${props => props.opacityValue};
+  transform: rotate(${props => props.rotateValue}deg);
+  width: ${props => props.sizeValue}px;
 `;
 
 const StarThree = props => {
@@ -189,16 +159,15 @@ const Footer = props => {
 
   for (let x = 0; x < 69; x++) {
     randStars.push(
-      <Star
+      <StarImg
         key={x}
         topValue={getRandomIntInclusive(1, 99)}
         leftValue={getRandomIntInclusive(1, 99)}
         opacityValue={getRandomIntInclusive(4, 9)}
         sizeValue={getRandomIntInclusive(9, 23)}
         rotateValue={getRandomIntInclusive(0, 72)} // 72deg of rotation is max of visible difference for a 5 point star
-      >
-        *
-      </Star>
+        src={starSVG}
+      />
     );
   }
 
@@ -244,8 +213,6 @@ const Footer = props => {
         <StarsContainer>{randStars}</StarsContainer>
 
         <MoonTwo />
-
-        <StarTwo />
 
         <StarThree />
 
