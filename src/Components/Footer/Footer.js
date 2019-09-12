@@ -60,6 +60,15 @@ const Mountain = styled.div`
   bottom: 0;
   position: absolute;
   left: ${props => props.leftValue}%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  span {
+    color: white;
+  }
 `;
 
 // ****
@@ -178,33 +187,60 @@ const Footer = props => {
   }
 
   // create mountains
-
   const mountains = [];
 
   // bg
   for (let x = 0; x < 100; x += 10) {
-    mountains.push(
-      <Mountain
-        key={x}
-        colorValue="#322b61"
-        widthValue={getRandomIntInclusive(3, 7)}
-        heightValue={getRandomIntInclusive(13, 30)}
-        leftValue={x}
-      />
-    );
+    if (x === 50) {
+      mountains.push(
+        <Mountain
+          key={x}
+          colorValue="#322b61"
+          widthValue={3}
+          heightValue={38}
+          leftValue={x}
+        >
+          <span>GitHurb</span>
+        </Mountain>
+      );
+    } else {
+      mountains.push(
+        <Mountain
+          key={x}
+          colorValue="#322b61"
+          widthValue={getRandomIntInclusive(3, 7)}
+          heightValue={getRandomIntInclusive(13, 30)}
+          leftValue={x}
+        />
+      );
+    }
   }
 
   // fg
   for (let x = -5; x < 100; x += 10) {
-    mountains.push(
-      <Mountain
-        key={x}
-        colorValue="#483d8b"
-        widthValue={getRandomIntInclusive(4, 7)}
-        heightValue={getRandomIntInclusive(15, 35)}
-        leftValue={x}
-      />
-    );
+    if (x === 25 || x === 65) {
+      mountains.push(
+        <Mountain
+          key={x}
+          colorValue="#483d8b"
+          widthValue={4}
+          heightValue={40}
+          leftValue={x}
+        >
+          <span>{x === 25 ? 'LinkedIn' : 'Contact'}</span>
+        </Mountain>
+      );
+    } else {
+      mountains.push(
+        <Mountain
+          key={x}
+          colorValue="#483d8b"
+          widthValue={getRandomIntInclusive(4, 7)}
+          heightValue={getRandomIntInclusive(15, 35)}
+          leftValue={x}
+        />
+      );
+    }
   }
 
   return (
