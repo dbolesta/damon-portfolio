@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { getRandomIntInclusive } from '../../Utils/utils';
 
@@ -15,6 +15,7 @@ const FooterContainer = styled.footer`
     rgba(58, 25, 146, 1) 100%
   );
   height: 90vh;
+  overflow: hidden;
 `;
 
 const FooterArtContainer = styled.div`
@@ -57,7 +58,7 @@ const Mountain = styled.div`
   border-right: ${props => props.widthValue}vw solid transparent;
   border-bottom: ${props => props.heightValue}vh solid
     ${props => props.colorValue};
-  bottom: 0;
+  bottom: -${props => (props.bottomValue ? props.bottomValue : 0)}px;
   position: absolute;
   left: ${props => props.leftValue}%;
 
@@ -65,6 +66,8 @@ const Mountain = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+
+  /* transition: all 0.3s ease-in-out; */
 
   span {
     color: white;
@@ -162,19 +165,148 @@ const Cloud = styled.span`
   }
 `;
 
+let dScroll = 0;
+let wHeight = window.innerHeight;
+let fHeight = 0;
+let fPos = 0;
+
 const Footer = props => {
+  // state and stuff
+  const footerRef = useRef();
+
+  const [percentInView, setPercentInView] = useState(0);
+  // const handleScroll = () => setPercentInView();
+
+  const [docScroll, setDocScroll] = useState(window.scrollY);
+
+  const [windowHeight, setWindowHeight] = useState(
+    window.innerHeight
+  );
+  const [footerHeight, setFooterHeight] = useState(0);
+  //footerRef.current.offsetHeight
+
+  const [footerPosition, setFooterPosition] = useState(0);
+  //footerRef.current.offsetTop
+
+  // resize updates
+  const handleResize = () => {
+    // setWindowHeight(window.innerHeight);
+    // setFooterHeight(footerRef.current.offsetHeight);
+    // setFooterPosition(footerRef.current.offsetTop);
+    fHeight = footerRef.current.offsetHeight;
+    fPos = footerRef.current.offsetTop;
+    wHeight = window.innerHeight;
+  };
+
+  // scroll state updates
+  const handleScroll = () => {
+    setDocScroll(window.scrollY);
+    dScroll = window.scrollY;
+    fHeight = footerRef.current.offsetHeight;
+    fPos = footerRef.current.offsetTop;
+    wHeight = window.innerHeight;
+
+    console.log(
+      `docScroll: ${dScroll} windowHeight: ${wHeight} footerHeight: ${fHeight} footerPosition ${fPos}`
+    );
+    console.log(calculateVisibilityForFooter());
+
+    setPercentInView(calculateVisibilityForFooter());
+  };
+
+  function calculateVisibilityForFooter() {
+    let hiddenAfter = fPos + fHeight - (dScroll + wHeight);
+
+    if (dScroll > fPos + fHeight || fPos > dScroll + wHeight) {
+      return 0;
+    } else {
+      var result = 100;
+
+      // BY HIDING THIS BLOCK, THIS CODE WILL RETURN THE PERCENTAGE UNTIL THE BOTTOM OF
+      // FOOTER HAS HIT THE BOTTOM OF THE WINDOW, ONCE THE FOOTER IS WITHIN THE WINDOW
+      /*if (hiddenBefore > 0) {
+                result -= (hiddenBefore * 100) / fHeight;
+            }*/
+
+      if (hiddenAfter > 0) {
+        result -= (hiddenAfter * 100) / fHeight;
+      }
+
+      return result;
+    }
+  }
+
+  // STAR DATA STATE
+  const [starData, setStarData] = useState([]);
+  const [bgMtnData, setBgMtnData] = useState([]);
+  const [fgMtnData, setFgMtnData] = useState([]);
+
+  useEffect(() => {
+    // if (footerRef) {
+    //   console.log('%c inside foter ref set!', 'font-size: 16px;');
+    //   setFooterHeight(footerRef.current.offsetHeight);
+    //   setFooterPosition(footerRef.current.offsetTop);
+    //   console.log(footerRef);
+    // }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    dScroll = window.scrollY;
+    wHeight = window.innerHeight;
+    fHeight = footerRef.current.offsetHeight;
+    fPos = footerRef.current.offsetTop;
+
+    // get and set initial values for randomized star data
+    const starDataBuild = [];
+    for (let x = 0; x < 69; x++) {
+      starDataBuild.push({
+        topValue: getRandomIntInclusive(1, 99),
+        leftValue: getRandomIntInclusive(1, 99),
+        opacityValue: getRandomIntInclusive(4, 9),
+        sizeValue: getRandomIntInclusive(9, 23),
+        rotateValue: getRandomIntInclusive(0, 72) // 72deg of rotation is max of visible difference for a 5 point star
+      });
+    }
+    setStarData(starDataBuild);
+
+    // get and set initial values for randomized mountain data (bg)
+    const bgMtnDataBuild = [];
+    for (let x = 0; x < 100; x += 10) {
+      bgMtnDataBuild.push({
+        widthValue: getRandomIntInclusive(3, 7),
+        heightValue: getRandomIntInclusive(13, 30),
+        leftValue: x
+      });
+    }
+    setBgMtnData(bgMtnDataBuild);
+
+    // get and set initial values for randomized mountain data (fg)
+    const fgMtnDataBuild = [];
+    for (let x = -5; x < 100; x += 10) {
+      fgMtnDataBuild.push({
+        widthValue: getRandomIntInclusive(4, 7),
+        heightValue: getRandomIntInclusive(15, 35),
+        leftValue: x,
+        startBottomValue: getRandomIntInclusive(300, 1600)
+      });
+    }
+    setFgMtnData(fgMtnDataBuild);
+  }, []);
+  //
+  // END OF USEEFFECT
+
   // create stars
   const randStars = [];
-
-  for (let x = 0; x < 69; x++) {
+  for (let x = 0; x < starData.length; x++) {
     randStars.push(
       <StarImg
         key={x}
-        topValue={getRandomIntInclusive(1, 99)}
-        leftValue={getRandomIntInclusive(1, 99)}
-        opacityValue={getRandomIntInclusive(4, 9)}
-        sizeValue={getRandomIntInclusive(9, 23)}
-        rotateValue={getRandomIntInclusive(0, 72)} // 72deg of rotation is max of visible difference for a 5 point star
+        topValue={starData[x] && starData[x].topValue}
+        leftValue={starData[x] && starData[x].leftValue}
+        opacityValue={starData[x] && starData[x].opacityValue}
+        sizeValue={starData[x] && starData[x].sizeValue}
+        rotateValue={starData[x] && starData[x].rotateValue} // 72deg of rotation is max of visible difference for a 5 point star
         src={starSVG}
       />
     );
@@ -190,15 +322,15 @@ const Footer = props => {
   const mountains = [];
 
   // bg
-  for (let x = 0; x < 100; x += 10) {
-    if (x === 50) {
+  for (let x = 0; x < bgMtnData.length; x++) {
+    if (x === 5) {
       mountains.push(
         <Mountain
           key={x}
           colorValue="#322b61"
           widthValue={3}
           heightValue={38}
-          leftValue={x}
+          leftValue={50}
         >
           <span>GitHurb</span>
         </Mountain>
@@ -208,43 +340,54 @@ const Footer = props => {
         <Mountain
           key={x}
           colorValue="#322b61"
-          widthValue={getRandomIntInclusive(3, 7)}
-          heightValue={getRandomIntInclusive(13, 30)}
-          leftValue={x}
+          widthValue={bgMtnData[x] && bgMtnData[x].widthValue}
+          heightValue={bgMtnData[x] && bgMtnData[x].heightValue}
+          leftValue={bgMtnData[x] && bgMtnData[x].leftValue}
         />
       );
     }
   }
 
+  // How to calculate percentage between the range of two values a third value is
+  // https://stackoverflow.com/questions/25835591/how-to-calculate-percentage-between-the-range-of-two-values-a-third-value-is/25835683
   // fg
-  for (let x = -5; x < 100; x += 10) {
-    if (x === 25 || x === 65) {
+  for (let x = 0; x < fgMtnData.length; x++) {
+    if (x === 3 || x === 7) {
       mountains.push(
         <Mountain
-          key={x}
+          key={x + 0.5}
           colorValue="#483d8b"
           widthValue={4}
           heightValue={40}
-          leftValue={x}
+          leftValue={x === 3 ? 25 : 65}
         >
-          <span>{x === 25 ? 'LinkedIn' : 'Contact'}</span>
+          <span>{x === 3 ? 'LinkedIn' : 'Contact'}</span>
         </Mountain>
       );
     } else {
       mountains.push(
         <Mountain
-          key={x}
+          key={x + 0.5}
           colorValue="#483d8b"
-          widthValue={getRandomIntInclusive(4, 7)}
-          heightValue={getRandomIntInclusive(15, 35)}
-          leftValue={x}
+          widthValue={fgMtnData[x] && fgMtnData[x].widthValue}
+          heightValue={fgMtnData[x] && fgMtnData[x].heightValue}
+          leftValue={fgMtnData[x] && fgMtnData[x].leftValue}
+          data-startbottom={
+            fgMtnData[x] && fgMtnData[x].startBottomValue
+          }
+          bottomValue={
+            (percentInView *
+              (0 - (fgMtnData[x] && fgMtnData[x].startBottomValue))) /
+              100 +
+            (fgMtnData[x] && fgMtnData[x].startBottomValue)
+          }
         />
       );
     }
   }
 
   return (
-    <FooterContainer>
+    <FooterContainer ref={footerRef}>
       <FooterArtContainer>
         <StarsContainer>{randStars}</StarsContainer>
 
