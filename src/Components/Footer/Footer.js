@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { getRandomIntInclusive } from '../../Utils/utils';
+import {
+  getRandomIntInclusive,
+  calculateVisibilityForFooter
+} from '../../Utils/utils';
 
 import Star from '../Star';
 
@@ -58,7 +61,9 @@ const Mountain = styled.div`
   border-right: ${props => props.widthValue}vw solid transparent;
   border-bottom: ${props => props.heightValue}vh solid
     ${props => props.colorValue};
-  bottom: -${props => (props.bottomValue ? props.bottomValue : 0)}px;
+  /* bottom: -${props =>
+    props.bottomValue ? props.bottomValue : 0}px; */
+  bottom: 0;
   position: absolute;
   left: ${props => props.leftValue}%;
 
@@ -86,24 +91,27 @@ const StarsContainer = styled.div`
   height: 90%;
 `;
 
-// need to prettier-ignore because it will remove the . between integer and $
-// prettier-ignore
-// const Star = styled.span`
-//   position: absolute;
-//   top: ${props => props.topValue}%;
-//   left: ${props => props.leftValue}%;
-//   opacity: 0.${props => props.opacityValue};
-//   font-size: 1.${props => props.fontSizeValue}rem;
-//   color: #eddd85;
-// `;
+const StarsParallax = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top: 0; */
+  height: 100%;
+
+  /* border: 1px solid red; */
+
+  bottom: ${props => props.bottomValue}px;
+`;
 
 const StarImg = styled.img`
   position: absolute;
   top: ${props => props.topValue}%;
   left: ${props => props.leftValue}%;
-  opacity: 0.${props => props.opacityValue};
+  opacity: 0 ${props => props.opacityValue};
   transform: rotate(${props => props.rotateValue}deg);
   width: ${props => props.sizeValue}px;
+
+  transition: all 0.5s ease-in-out;
 `;
 
 const StarThree = props => {
@@ -165,99 +173,21 @@ const Cloud = styled.span`
   }
 `;
 
-let dScroll = 0;
-let wHeight = window.innerHeight;
-let fHeight = 0;
-let fPos = 0;
-
 const Footer = props => {
   // state and stuff
   const footerRef = useRef();
 
+  // will be calculated using the 4 states below
   const [percentInView, setPercentInView] = useState(0);
-  // const handleScroll = () => setPercentInView();
 
-  const [docScroll, setDocScroll] = useState(window.scrollY);
-
-  const [windowHeight, setWindowHeight] = useState(
-    window.innerHeight
-  );
+  // vars needed to calculate % of footer in window
+  const [windowScroll, setWindowScroll] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
   const [footerHeight, setFooterHeight] = useState(0);
-  //footerRef.current.offsetHeight
-
-  const [footerPosition, setFooterPosition] = useState(0);
-  //footerRef.current.offsetTop
-
-  // resize updates
-  const handleResize = () => {
-    // setWindowHeight(window.innerHeight);
-    // setFooterHeight(footerRef.current.offsetHeight);
-    // setFooterPosition(footerRef.current.offsetTop);
-    fHeight = footerRef.current.offsetHeight;
-    fPos = footerRef.current.offsetTop;
-    wHeight = window.innerHeight;
-  };
-
-  // scroll state updates
-  const handleScroll = () => {
-    setDocScroll(window.scrollY);
-    dScroll = window.scrollY;
-    fHeight = footerRef.current.offsetHeight;
-    fPos = footerRef.current.offsetTop;
-    wHeight = window.innerHeight;
-
-    console.log(
-      `docScroll: ${dScroll} windowHeight: ${wHeight} footerHeight: ${fHeight} footerPosition ${fPos}`
-    );
-    console.log(calculateVisibilityForFooter());
-
-    setPercentInView(calculateVisibilityForFooter());
-  };
-
-  function calculateVisibilityForFooter() {
-    let hiddenAfter = fPos + fHeight - (dScroll + wHeight);
-
-    if (dScroll > fPos + fHeight || fPos > dScroll + wHeight) {
-      return 0;
-    } else {
-      var result = 100;
-
-      // BY HIDING THIS BLOCK, THIS CODE WILL RETURN THE PERCENTAGE UNTIL THE BOTTOM OF
-      // FOOTER HAS HIT THE BOTTOM OF THE WINDOW, ONCE THE FOOTER IS WITHIN THE WINDOW
-      /*if (hiddenBefore > 0) {
-                result -= (hiddenBefore * 100) / fHeight;
-            }*/
-
-      if (hiddenAfter > 0) {
-        result -= (hiddenAfter * 100) / fHeight;
-      }
-
-      return result;
-    }
-  }
+  const [footerTop, setFooterTop] = useState(0);
 
   // STAR DATA STATE
-  const [starData, setStarData] = useState([]);
-  const [bgMtnData, setBgMtnData] = useState([]);
-  const [fgMtnData, setFgMtnData] = useState([]);
-
-  useEffect(() => {
-    // if (footerRef) {
-    //   console.log('%c inside foter ref set!', 'font-size: 16px;');
-    //   setFooterHeight(footerRef.current.offsetHeight);
-    //   setFooterPosition(footerRef.current.offsetTop);
-    //   console.log(footerRef);
-    // }
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
-
-    dScroll = window.scrollY;
-    wHeight = window.innerHeight;
-    fHeight = footerRef.current.offsetHeight;
-    fPos = footerRef.current.offsetTop;
-
-    // get and set initial values for randomized star data
+  const [starData, setStarData] = useState(() => {
     const starDataBuild = [];
     for (let x = 0; x < 69; x++) {
       starDataBuild.push({
@@ -268,9 +198,11 @@ const Footer = props => {
         rotateValue: getRandomIntInclusive(0, 72) // 72deg of rotation is max of visible difference for a 5 point star
       });
     }
-    setStarData(starDataBuild);
+    return starDataBuild;
+  });
 
-    // get and set initial values for randomized mountain data (bg)
+  // FG and BG Mountain data
+  const [bgMtnData, setBgMtnData] = useState(() => {
     const bgMtnDataBuild = [];
     for (let x = 0; x < 100; x += 10) {
       bgMtnDataBuild.push({
@@ -279,22 +211,49 @@ const Footer = props => {
         leftValue: x
       });
     }
-    setBgMtnData(bgMtnDataBuild);
+    return bgMtnDataBuild;
+  });
 
-    // get and set initial values for randomized mountain data (fg)
+  const [fgMtnData, setFgMtnData] = useState(() => {
     const fgMtnDataBuild = [];
     for (let x = -5; x < 100; x += 10) {
       fgMtnDataBuild.push({
         widthValue: getRandomIntInclusive(4, 7),
         heightValue: getRandomIntInclusive(15, 35),
         leftValue: x,
-        startBottomValue: getRandomIntInclusive(300, 1600)
+        startBottomValue: getRandomIntInclusive(50, 450)
       });
     }
-    setFgMtnData(fgMtnDataBuild);
+    return fgMtnDataBuild;
+  });
+
+  // scroll state updates & event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setWindowScroll(window.scrollY);
+      setWindowHeight(window.innerHeight);
+      setFooterHeight(footerRef.current.offsetHeight);
+      setFooterTop(footerRef.current.offsetTop);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
-  //
-  // END OF USEEFFECT
+
+  // update and recalculate % of footer in window
+  useEffect(() => {
+    setPercentInView(
+      calculateVisibilityForFooter(
+        windowScroll,
+        windowHeight,
+        footerHeight,
+        footerTop
+      )
+    );
+  }, [windowScroll, windowHeight, footerHeight, footerTop]);
 
   // create stars
   const randStars = [];
@@ -389,7 +348,23 @@ const Footer = props => {
   return (
     <FooterContainer ref={footerRef}>
       <FooterArtContainer>
-        <StarsContainer>{randStars}</StarsContainer>
+        <StarsContainer>
+          <StarsParallax
+            bottomValue={(percentInView * (0 - 75)) / 100 + 75}
+          >
+            {randStars.slice(0, 23)}
+          </StarsParallax>
+          <StarsParallax
+            bottomValue={(percentInView * (0 - 150)) / 100 + 150}
+          >
+            {randStars.slice(24, 46)}
+          </StarsParallax>
+          <StarsParallax
+            bottomValue={(percentInView * (0 - 225)) / 100 + 225}
+          >
+            {randStars.slice(47, 69)}
+          </StarsParallax>
+        </StarsContainer>
 
         <MoonTwo />
 
