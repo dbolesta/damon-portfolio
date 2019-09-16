@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header';
 import WorkStripe from './Components/WorkStripe';
 import Footer from './Components/Footer';
+import Bio from './Components/Bio';
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { globalStyles } from './Styles/global';
@@ -36,6 +37,7 @@ function App() {
         <GlobalStyle />
         <div className="App">
           <Header />
+          <Bio />
           {data ? (
             <React.Fragment>
               <WorkStripe
@@ -50,7 +52,7 @@ function App() {
               />
             </React.Fragment>
           ) : null}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </React.Fragment>
     </ThemeProvider>

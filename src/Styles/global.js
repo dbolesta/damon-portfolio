@@ -35,11 +35,11 @@ export const globalStyles = css`
       90%,
       24%
     ); /* like a dark velvet night sky */
-    min-height: 150vh;
+    /* min-height: 150vh; */
   }
 
   /* this should be as a theme? global rotate?*/
-  .rotate-theme {
+  .rotate-theme2 {
     transform: rotate(-6deg);
     transform-origin: bottom right;
 
