@@ -30,6 +30,7 @@ const WorkCardWrapper = styled.div`
     padding: 0.5rem 0;
     text-align: center;
     margin: 0;
+    font-family: 'Varela Round';
   }
 
   .left {

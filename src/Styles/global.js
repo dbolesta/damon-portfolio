@@ -4,6 +4,7 @@ import normalize from './normalize';
 export const globalStyles = css`
   @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
   ${normalize}
 
@@ -22,6 +23,7 @@ export const globalStyles = css`
     background-color: #8ada4d;
     /* background-color: red; */
     overflow-x: hidden;
+    font-family: 'Montserrat';
 
     @media (max-width: 900px) {
     }
@@ -36,6 +38,17 @@ export const globalStyles = css`
       24%
     ); /* like a dark velvet night sky */
     /* min-height: 150vh; */
+  }
+
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Montserrat';
   }
 
   /* this should be as a theme? global rotate?*/

@@ -11,6 +11,10 @@ import { globalStyles } from './Styles/global';
 import { theme } from './Styles/theme';
 
 import { fetchData } from './Utils/prismicFetch';
+import FootWrap from './Components/FootWrap';
+import ContentWrap from './Components/ContentWrap';
+import LeftColumn from './Components/LeftColumn';
+import SideHeader from './Components/SideHeader';
 
 const GlobalStyle = createGlobalStyle`
   ${globalStyles}
@@ -35,25 +39,38 @@ function App() {
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <GlobalStyle />
-        <div className="App">
-          <Header />
-          <Bio />
-          {data ? (
-            <React.Fragment>
-              <WorkStripe
-                bgColor={theme.workStripeColors.green}
-                category="Sites"
-                data={data.sites}
-              />
-              <WorkStripe
-                bgColor={theme.workStripeColors.red}
-                category="Games"
-                data={data.games}
-              />
-            </React.Fragment>
-          ) : null}
-          <Footer />
-        </div>
+        <FootWrap>
+          <div className="App">
+            <LeftColumn>
+              <SideHeader></SideHeader>
+            </LeftColumn>
+            <ContentWrap>
+              <Header />
+              <Bio />
+              {data ? (
+                <React.Fragment>
+                  <WorkStripe
+                    bgColor={theme.colors.pink}
+                    textColor={theme.colors.blue2}
+                    category="Sites"
+                    data={data.sites}
+                    sites
+                    circleBg
+                  />
+                  <WorkStripe
+                    bgColor={theme.colors.asteroid.black}
+                    textColor={theme.colors.asteroid.white}
+                    category="Games"
+                    data={data.games}
+                    games
+                    redDot
+                  />
+                </React.Fragment>
+              ) : null}
+              {/* <Footer /> */}
+            </ContentWrap>
+          </div>
+        </FootWrap>
       </React.Fragment>
     </ThemeProvider>
   );
