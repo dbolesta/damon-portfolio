@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
     font-size: 7rem;
     font-weight: 100;
     padding-top: 2rem;
-    color: #f6dd3b;
+    color: ${props => props.theme.colors.yellow};
     background-color: inherit;
     position: relative;
     /* left: -8px; */
@@ -20,9 +20,9 @@ const HeaderContainer = styled.div`
 
     transition: all 0.4s cubic-bezier(0.57, 0.4, 0.21, 0.91);
 
-    &:before {
+    /* &:before {
       box-shadow: none;
-    }
+    } */
   }
 `;
 

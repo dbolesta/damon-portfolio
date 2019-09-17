@@ -52,7 +52,7 @@ function App() {
               />
             </React.Fragment>
           ) : null}
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </React.Fragment>
     </ThemeProvider>

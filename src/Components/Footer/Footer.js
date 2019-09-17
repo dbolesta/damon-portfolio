@@ -348,7 +348,7 @@ const Footer = props => {
   return (
     <FooterContainer ref={footerRef}>
       <FooterArtContainer>
-        <StarsContainer>
+        {/* <StarsContainer>
           <StarsParallax
             bottomValue={(percentInView * (0 - 75)) / 100 + 75}
           >
@@ -364,7 +364,7 @@ const Footer = props => {
           >
             {randStars.slice(47, 69)}
           </StarsParallax>
-        </StarsContainer>
+        </StarsContainer> */}
 
         <MoonTwo />
 

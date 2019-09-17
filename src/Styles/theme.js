@@ -5,6 +5,9 @@ export const theme = {
     green: 'hsl(130, 70%, 75%)',
     red: 'hsl(8, 70%, 75%)'
   },
+  colors: {
+    yellow: '#f6dd3b'
+  },
   rotateAndExtend: css`
     transform: rotate(-6deg);
     transform-origin: bottom right;

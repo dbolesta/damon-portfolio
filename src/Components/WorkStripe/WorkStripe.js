@@ -13,22 +13,23 @@ const WorkStripeContainer = styled.div`
 `;
 
 const WorkStripeName = styled.h2`
-  background-color: #565656;
-  color: transparent;
+  /* background-color: #565656; */
+  color: ${props => props.theme.colors.yellow};
   display: inline-block;
+  font-family: 'Varela Round';
   margin: 0;
   text-align: left;
-  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-  -webkit-background-clip: text;
+  /* text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5); */
+  /* -webkit-background-clip: text;
   -moz-background-clip: text;
-  background-clip: text;
-
+  background-clip: text; */
+  /* 
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   font-size: 6rem;
-
-  z-index: -1;
+  /* 
+  z-index: -1; */
 `;
 
 const WorkStripeWrapper = styled.div`
