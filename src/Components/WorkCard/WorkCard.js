@@ -16,8 +16,10 @@ const WorkCardContainer = styled.div`
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
   box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px; */
 
-  box-shadow: 0 15px 35px rgba(45, 50, 126, 0.1),
-    0 5px 15px 0 rgba(45, 50, 126, 0.07);
+  /* box-shadow: 0 15px 35px rgba(45, 50, 126, 0.1),
+    0 5px 15px 0 rgba(45, 50, 126, 0.07); */
+
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
 `;
 
 const WorkCardWrapper = styled.div`
@@ -30,7 +32,7 @@ const WorkCardWrapper = styled.div`
     padding: 0.5rem 0;
     text-align: center;
     margin: 0;
-    font-family: 'Varela Round';
+    font-family: 'Montserrat';
   }
 
   .left {

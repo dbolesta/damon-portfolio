@@ -8,6 +8,7 @@ export const theme = {
   colors: {
     yellow: '#f6dd3b',
     blue: '#92c3ec',
+    blue3: '#70d6ef',
     asteroid: {
       white: '#F4F4F4',
       black: '#010101'
