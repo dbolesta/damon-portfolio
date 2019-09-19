@@ -49,13 +49,16 @@ const WorkStripeName = styled.h2`
 const WorkStripeWrapper = styled.div`
   /* border: 1px solid red; */
   /* width: 100vw; */
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
+
   position: relative;
   z-index: 2;
 `;
 
 const WorkCardsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const CircleBg = styled.div`

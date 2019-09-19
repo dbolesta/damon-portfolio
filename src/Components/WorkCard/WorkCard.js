@@ -6,8 +6,8 @@ import imgPlaceholder from '../../Images/website_preview_placeholder_tall.png';
 const WorkCardContainer = styled.div`
   /* padding: 0.5rem; */
   /* border-radius: 5px; */
-  /* background-color: #fafafa; */
-  background-color: #f1fffe;
+  background-color: #fafafa;
+  /* background-color: #f1fffe; */
   margin: 1rem;
   /* min-width: 34rem; */
   flex: 0 0 34rem;
