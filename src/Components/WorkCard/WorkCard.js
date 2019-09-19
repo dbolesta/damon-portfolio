@@ -5,77 +5,111 @@ import imgPlaceholder from '../../Images/website_preview_placeholder_tall.png';
 
 const WorkCardContainer = styled.div`
   /* padding: 0.5rem; */
-  border-radius: 5px;
+  /* border-radius: 5px; */
   /* background-color: #fafafa; */
   background-color: #f1fffe;
   margin: 1rem;
   min-width: 34rem;
   overflow: hidden;
 
-  /* -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px; */
-
-  /* box-shadow: 0 15px 35px rgba(45, 50, 126, 0.1),
-    0 5px 15px 0 rgba(45, 50, 126, 0.07); */
-
-  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4); */
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 25px;
+  border-radius: 25px;
 `;
 
 const WorkCardWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-
-  h4 {
-    flex-basis: 100%;
-    background-color: #b3e0df;
-    padding: 0.5rem 0;
-    text-align: center;
-    margin: 0;
-    font-family: 'Montserrat';
-  }
-
-  .left {
-    flex-basis: 50%;
-    img {
-      width: 100%;
-      display: block;
-    }
-  }
-
-  .right {
-    flex-basis: 25%;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-
-    p {
-      padding: 0.4rem;
-      margin: 0;
-    }
-  }
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  height: 100%;
 `;
 
-const TechIcons = styled.ul`
-  list-style-type: none;
+const Top = styled.div`
   display: flex;
-  padding-left: 0;
-  align-items: center;
-  justify-content: space-around;
 
-  width: 100%;
-
-  li {
-    display: flex;
-    flex-direction: column;
-    justify-content: initial;
-    align-items: center;
-    width: 100%;
+  .img-container {
+    box-shadow: 4px 13px 30px 1px rgba(56, 56, 56, 0.2);
+    border-radius: 25px;
+    overflow: hidden;
+    flex-basis: 30%;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 0; /* weird spacing under image fix */
+    height: 100%; /* same but for game (rect) images lol */
+    /* transform: translate(-30%, -30%); */
 
     img {
-      width: 1.4rem;
+      width: 100%;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .title-tech {
+    flex-grow: 1;
+    padding-left: 2rem;
+
+    h4 {
+      padding: 0.5rem 0;
+      text-align: left;
+      margin: 0;
+      font-family: 'Montserrat';
+      font-size: 1.5rem;
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      padding-left: 0;
+      align-items: center;
+      /* justify-content: space-around; */
+      width: 100%;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: initial;
+        align-items: center;
+        margin-right: 2rem;
+
+        img {
+          width: 1.4rem;
+        }
+
+        span {
+          font-family: 'Varela Round';
+          font-weight: 500;
+          font-size: 0.9rem;
+          margin-top: 4px;
+        }
+      } /* end li */
+    } /* end ul */
+  } /* end title-tech */
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+
+  .description-container {
+    p {
+    }
+  }
+
+  .links-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    a {
+      text-decoration: none;
+      font-family: 'Varela Round';
+      color: #f6dd3b;
+      background-color: #94c4ea;
     }
   }
 `;
@@ -88,24 +122,35 @@ const WorkCard = props => {
   return (
     <WorkCardContainer>
       <WorkCardWrapper>
-        <h4>{title[0].text}</h4>
-        <div className="left">
-          <img src={image.url} alt={image.alt} />
-        </div>
-        <div className="right">
-          <p>{description[0].text}</p>
-          <TechIcons>
-            {tech.map(t => {
-              const { name, icon } = t;
-              return (
-                <li>
-                  <img src={icon.url} alt={name[0].text} />
-                  <span>{name[0].text}</span>
-                </li>
-              );
-            })}
-          </TechIcons>
-        </div>
+        <Top>
+          <div className="img-container">
+            <img src={image.url} alt={image.alt} />
+          </div>
+
+          <div className="title-tech">
+            <h4>{title[0].text}</h4>
+            <ul>
+              {tech.map(t => {
+                const { name, icon } = t;
+                return (
+                  <li>
+                    <img src={icon.url} alt={name[0].text} />
+                    <span>{name[0].text}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </Top>
+        <Bottom>
+          <div className="description-container">
+            <p>{description[0].text}</p>
+          </div>
+          <div className="links-container">
+            <a href="">Visit Site</a>
+            <a href="">View on GitHub</a>
+          </div>
+        </Bottom>
       </WorkCardWrapper>
     </WorkCardContainer>
   );
