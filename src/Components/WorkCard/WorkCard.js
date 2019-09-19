@@ -9,7 +9,8 @@ const WorkCardContainer = styled.div`
   /* background-color: #fafafa; */
   background-color: #f1fffe;
   margin: 1rem;
-  min-width: 34rem;
+  /* min-width: 34rem; */
+  flex: 0 0 34rem;
   overflow: hidden;
 
   /* box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4); */
@@ -52,9 +53,10 @@ const Top = styled.div`
     padding-left: 2rem;
 
     h4 {
-      padding: 0.5rem 0;
+      padding: 0;
       text-align: left;
       margin: 0;
+      margin-bottom: 1rem;
       font-family: 'Montserrat';
       font-size: 1.5rem;
     }
@@ -66,6 +68,7 @@ const Top = styled.div`
       align-items: center;
       /* justify-content: space-around; */
       width: 100%;
+      margin: 0;
 
       li {
         display: flex;
