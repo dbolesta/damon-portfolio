@@ -9,6 +9,8 @@ import asteroidBlue from '../../Images/asteroidBlue.svg';
 import asteroidYellow from '../../Images/asteroidYellow.svg';
 import asteroidGreen from '../../Images/asteroidGreen.svg';
 
+import AsteroidCanvas from '../AsteroidCanvas';
+
 console.log('Ayyyy, big boy');
 
 const WorkStripeContainer = styled.div`
@@ -227,11 +229,12 @@ const WorkStripe = props => {
 
       {props.games ? (
         <AsteroidsContainer>
-          <img src={asteroid} />
+          <AsteroidCanvas />
+          {/* <img src={asteroid} />
           <img src={asteroidRed} />
           <img src={asteroidYellow} />
           <img src={asteroidGreen} />
-          <img src={asteroidBlue} />
+          <img src={asteroidBlue} /> */}
         </AsteroidsContainer>
       ) : null}
     </WorkStripeContainer>
