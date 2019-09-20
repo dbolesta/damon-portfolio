@@ -1,0 +1,77 @@
+import React, { Component } from 'react';
+import styled from 'styled-components';
+
+// mario colors
+// sky blue: #9494FF;
+// mtn green: #109400;
+// tree/bush green: #82CE2C;
+// brick brown: #9C4A00;
+// ? block: #E79C21;
+// dungeon blue : #007B8C
+// castle grey: #BCBCBC;
+// lava red: #D62A16
+// water blue: #2441E8;
+// coral pink: #F15EA1;
+// coral pink 2: #CC2276;
+
+const CanvasContainer = styled.canvas``;
+
+class AsteroidCanvas extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { angle: 0 };
+    this.updateAnimationState = this.updateAnimationState.bind(this);
+  }
+
+  componentDidMount() {
+    this.rAF = requestAnimationFrame(this.updateAnimationState);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.rAF);
+  }
+
+  updateAnimationState() {
+    this.setState(prevState => ({ angle: prevState.angle + 1 }));
+    this.rAF = requestAnimationFrame(this.updateAnimationState);
+  }
+
+  render() {
+    return <Canvas angle={this.state.angle} />;
+  }
+}
+
+class Canvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.canvasRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    const { angle } = this.props;
+    const canvas = this.canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.save();
+    ctx.beginPath();
+    ctx.clearRect(0, 0, width, height);
+    ctx.translate(width / 2, height / 2);
+    ctx.rotate((angle * Math.PI) / 180);
+    ctx.fillStyle = '#4397AC';
+    ctx.fillRect(-width / 4, -height / 4, width / 2, height / 2);
+    ctx.restore();
+  }
+
+  render() {
+    return (
+      <canvas
+        width="100%"
+        height="100%"
+        ref={this.canvasRef}
+      ></canvas>
+    );
+  }
+}
+
+export default AsteroidCanvas;
