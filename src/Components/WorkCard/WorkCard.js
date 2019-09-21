@@ -10,7 +10,7 @@ const WorkCardContainer = styled.div`
   /* background-color: #f1fffe; */
   margin: 1rem;
   /* min-width: 34rem; */
-  flex: 0 0 34rem;
+  flex: 0 0 45%;
   overflow: hidden;
 
   /* box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4); */

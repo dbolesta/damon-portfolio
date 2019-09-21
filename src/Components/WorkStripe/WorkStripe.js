@@ -61,6 +61,7 @@ const WorkStripeWrapper = styled.div`
 
   position: relative;
   z-index: 2;
+  margin: 0 -2rem; /* maybe messy, consider refactoring */
 `;
 
 const WorkCardsContainer = styled.div`
