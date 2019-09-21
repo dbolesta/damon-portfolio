@@ -24,6 +24,75 @@ const CanvasContainer = styled.div`
   bottom: 0;
 `;
 
+function polyPoints(size) {
+  let xrand = 0;
+  let yrand = 0;
+
+  let pointList = [];
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand, y: yrand + 3 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand - 1 * size, y: yrand + 2 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand - 2 * size, y: yrand + 2 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand - 3 * size, y: yrand + size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand - 4 * size, y: yrand });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand - 1 * size, y: yrand - 3 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand + 2 * size, y: yrand - 4 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand + 2 * size, y: yrand - 3 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand + 4 * size, y: yrand - 2 * size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand + 4 * size, y: yrand + size });
+
+  xrand = Math.round(Math.random() * size - size / 2);
+  yrand = Math.round(Math.random() * size - size / 2);
+
+  pointList.push({ x: xrand + 3 * size, y: yrand + 2 * size });
+
+  //  xrand = Math.round(Math.random() * size - size / 2);
+  //  yrand = Math.round(Math.random() * size - size / 2);
+
+  //  pointList.push({ x: xrand + 5 * size, y: yrand + 3 * size });
+
+  return pointList;
+}
+
 // Asteroid Container
 
 class AsteroidCanvas extends Component {
@@ -53,6 +122,9 @@ class AsteroidCanvas extends Component {
     // each object has information for 1 asteroid
     let balls = [];
     for (var i = 0; i < 10; i++) {
+      let size = getRandomIntInclusive(10, 20);
+      let points = polyPoints(size);
+
       balls.push({
         id: i,
         x: getRandomIntInclusive(0, containW),
@@ -67,8 +139,10 @@ class AsteroidCanvas extends Component {
           ',' +
           getRandomIntInclusive(0, 255) +
           ')',
-        size: getRandomIntInclusive(10, 20),
-        angle: getRandomIntInclusive(-2, 2)
+        size: size,
+        rotationSpeed: getRandomIntInclusive(-2, 2),
+        rotation: 0,
+        points: points
       });
     }
 
@@ -93,7 +167,7 @@ class AsteroidCanvas extends Component {
 
     //  console.log('%c BallCopyLoop', 'font-size: 16px');
 
-    // wrap objects when they get ot the edges of the canvas
+    // wrap objects when they get to the edges of the canvas
     for (var i in ballCopy) {
       if (ballCopy[i].x - ballCopy[i].size >= this.state.containW) {
         ballCopy[i].x = 1 - ballCopy[i].size;
@@ -109,6 +183,8 @@ class AsteroidCanvas extends Component {
       }
       ballCopy[i].x += ballCopy[i].velX;
       ballCopy[i].y += ballCopy[i].velY;
+
+      ballCopy[i].rotation += ballCopy[i].rotationSpeed;
     }
 
     this.setState({ balls: ballCopy });
@@ -130,7 +206,6 @@ class AsteroidCanvas extends Component {
       <CanvasContainer ref={this.containerRef}>
         <Canvas
           balls={this.state.balls}
-          angle={this.state.angle}
           containW={this.state.containW}
           containH={this.state.containH}
         />
@@ -195,11 +270,24 @@ class Canvas extends React.Component {
       this.velY = velY;
     }
 
-    function Ball(x, y, velX, velY, color, size) {
+    function Ball(
+      x,
+      y,
+      velX,
+      velY,
+      color,
+      size,
+      points,
+      rotation,
+      rotationSpeed
+    ) {
       Shape.call(this, x, y, velX, velY);
 
       this.color = color;
       this.size = size;
+      this.points = points;
+      this.rotation = rotation;
+      this.rotationSpeed = rotationSpeed;
     }
 
     Ball.prototype = Object.create(Shape.prototype);
@@ -207,22 +295,62 @@ class Canvas extends React.Component {
 
     // some prototypes
     Ball.prototype.draw = function() {
-      console.log('should be drawing...');
+      // console.log('should be drawing...');
       ctx.beginPath();
       // ctx.fillStyle = this.color;
       ctx.strokeStyle = this.color;
 
-      // asteroid attempt..
       // ctx.moveTo(this.x, this.y);
-      // ctx.lineTo(this.x - 3, this.y - 3);
-      // ctx.lineTo(this.x - 4, this.y - 4);
-      // ctx.lineTo(this.x + 4, this.y + 4);
-      // ctx.lineTo(this.x + 7, this.y + 7);
-      // ctx.lineTo(this.x + 9, this.y + 9);
-      // ctx.closePath();
+      ctx.moveTo(
+        this.points[0].x + this.x,
+        this.points[0].y + this.y
+      );
+      for (var i = 1; i < this.points.length; i++) {
+        ctx.lineTo(
+          this.points[i].x + this.x,
+          this.points[i].y + this.y
+        );
+      }
+      ctx.closePath();
 
-      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+      // console.log('%c ROtat?', 'font-size: 16px');
+      // console.log(this.rotation);
+      // console.log(this.rotationSpeed);
+      // ctx.rotate((this.rotation * Math.PI) / 180);
+
+      // ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
       ctx.stroke();
+
+      // debug
+      // debug
+      // debug
+
+      // show center
+      // ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+      // ctx.stroke();
+
+      // show beginning and end draw line
+      // ctx.beginPath();
+      // ctx.strokeStyle = 'red';
+      // ctx.moveTo(this.x, this.y);
+      // ctx.lineTo(
+      //   this.points[0].x + this.x,
+      //   this.points[0].y + this.y
+      // );
+      // ctx.stroke();
+
+      // ctx.beginPath();
+      // ctx.strokeStyle = 'green';
+      // ctx.moveTo(
+      //   this.points[this.points.length - 2].x + this.x,
+      //   this.points[this.points.length - 2].y + this.y
+      // );
+      // ctx.lineTo(
+      //   this.points[this.points.length - 1].x + this.x,
+      //   this.points[this.points.length - 1].y + this.y
+      // );
+      // ctx.stroke();
+
       // ctx.fill();
     };
 
@@ -243,7 +371,10 @@ class Canvas extends React.Component {
           balls[keyName].velX,
           balls[keyName].velY,
           balls[keyName].color,
-          balls[keyName].size
+          balls[keyName].size,
+          balls[keyName].points,
+          balls[keyName].rotation,
+          balls[keyName].rotationSpeed
         )
       );
     });
