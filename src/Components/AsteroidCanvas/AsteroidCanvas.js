@@ -93,18 +93,19 @@ class AsteroidCanvas extends Component {
 
     //  console.log('%c BallCopyLoop', 'font-size: 16px');
 
+    // wrap objects when they get ot the edges of the canvas
     for (var i in ballCopy) {
-      if (ballCopy[i].x + ballCopy[i].size >= this.state.containW) {
-        ballCopy[i].velX = -ballCopy[i].velX;
+      if (ballCopy[i].x - ballCopy[i].size >= this.state.containW) {
+        ballCopy[i].x = 1 - ballCopy[i].size;
       }
-      if (ballCopy[i].x - ballCopy[i].size <= 0) {
-        ballCopy[i].velX = -ballCopy[i].velX;
+      if (ballCopy[i].x + ballCopy[i].size <= 0) {
+        ballCopy[i].x = this.state.containW + ballCopy[i].size;
       }
-      if (ballCopy[i].y + ballCopy[i].size >= this.state.containH) {
-        ballCopy[i].velY = -ballCopy[i].velY;
+      if (ballCopy[i].y - ballCopy[i].size >= this.state.containH) {
+        ballCopy[i].y = 1 - ballCopy[i].size;
       }
-      if (ballCopy[i].y - ballCopy[i].size <= 0) {
-        ballCopy[i].velY = -ballCopy[i].velY;
+      if (ballCopy[i].y + ballCopy[i].size <= 0) {
+        ballCopy[i].y = this.state.containH + ballCopy[i].size;
       }
       ballCopy[i].x += ballCopy[i].velX;
       ballCopy[i].y += ballCopy[i].velY;
