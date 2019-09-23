@@ -24,6 +24,9 @@ const CanvasContainer = styled.div`
   bottom: 0;
 `;
 
+// function to create semi-random asteroic shapes to use in canvas draw
+// bless this beautiful boy:
+// https://embed.com/typescript-games/html-canvas-asteroids.html
 function polyPoints(size) {
   let xrand = 0;
   let yrand = 0;
@@ -120,8 +123,34 @@ class AsteroidCanvas extends Component {
 
     // make empty array, and fill it with initial data for asteroids
     // each object has information for 1 asteroid
+
+    let marioColors = [
+      '#9494FF',
+      '#109400',
+      '#82CE2C',
+      '#9C4A00',
+      '#E79C21',
+      '#007B8C',
+      '#BCBCBC',
+      '#D62A16',
+      '#2441E8',
+      '#F15EA1',
+      '#CC2276'
+    ];
+
+    let pongColors = [
+      '#D0E671',
+      '#A6E089',
+      '#68F1AD',
+      '#7DD3DE',
+      '#A7CAE6',
+      '#E6D4F9',
+      'hsl(0, 83%, 68%)',
+      'hsl(23, 83%, 68%)'
+    ];
+
     let balls = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < pongColors.length * 2; i++) {
       let size = getRandomIntInclusive(10, 20);
       let points = polyPoints(size);
 
@@ -131,14 +160,9 @@ class AsteroidCanvas extends Component {
         y: getRandomIntInclusive(0, containH),
         velX: getRandomIntInclusive(-2, 2),
         velY: getRandomIntInclusive(-2, 2),
-        color:
-          'rgb(' +
-          getRandomIntInclusive(0, 255) +
-          ',' +
-          getRandomIntInclusive(0, 255) +
-          ',' +
-          getRandomIntInclusive(0, 255) +
-          ')',
+        //   color: marioColors[i],
+        color: pongColors[i % pongColors.length],
+        //   color: '#fff',
         size: size,
         rotationSpeed: getRandomIntInclusive(-2, 2),
         rotation: 0,
@@ -309,65 +333,25 @@ class Canvas extends React.Component {
       ctx.translate(this.x, this.y);
       // ctx.rotate(this.rotation);
 
-      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.rotate((this.rotation * Math.PI) / 180); // extra math so we can use degress instead of radians
 
       ctx.beginPath();
-      // ctx.fillStyle = this.color;
       ctx.strokeStyle = this.color;
 
-      // rotation here?
-
-      // ctx.moveTo(this.x, this.y);
       ctx.moveTo(this.points[0].x, this.points[0].y);
       for (var i = 1; i < this.points.length; i++) {
         ctx.lineTo(this.points[i].x, this.points[i].y);
       }
       ctx.closePath();
 
-      // console.log('%c ROtat?', 'font-size: 16px');
-      // console.log(this.rotation);
-      // console.log(this.rotationSpeed);
-      // ctx.rotate((this.rotation * Math.PI) / 180);
+      // if you want asteroids to be filled
+      // ctx.fillStyle = '#000';
+      // ctx.fill();
 
-      // ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
       ctx.stroke();
 
-      // debug
-      // debug
-      // debug
-
-      // show center
-      // ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-      // ctx.stroke();
-
-      // show beginning and end draw line
-      // ctx.beginPath();
-      // ctx.strokeStyle = 'red';
-      // ctx.moveTo(this.x, this.y);
-      // ctx.lineTo(
-      //   this.points[0].x + this.x,
-      //   this.points[0].y + this.y
-      // );
-      // ctx.stroke();
-
-      // ctx.beginPath();
-      // ctx.strokeStyle = 'green';
-      // ctx.moveTo(
-      //   this.points[this.points.length - 2].x + this.x,
-      //   this.points[this.points.length - 2].y + this.y
-      // );
-      // ctx.lineTo(
-      //   this.points[this.points.length - 1].x + this.x,
-      //   this.points[this.points.length - 1].y + this.y
-      // );
-      // ctx.stroke();
-
-      // ctx.fill();
       ctx.restore();
     };
-
-    //  console.log('%c Uh here wtf, stete?', 'font-size: 16px');
-    //  console.log(this.props.balls);
 
     const { balls } = this.props;
 
@@ -394,15 +378,7 @@ class Canvas extends React.Component {
     for (var i = 0; i < newBalls.length; i++) {
       newBalls[i].draw();
     }
-    /// end. okayy....
-
-    //  ctx.beginPath();
-    //  ctx.translate(width / 2, height / 2);
-    //  ctx.rotate((angle * Math.PI) / 180);
-    //  ctx.strokeStyle = '#2441E8';
-    //  ctx.strokeRect(-width / 4, -height / 4, width / 2, height / 2);
-    //  ctx.restore();
-  }
+  } // end componentDidUpdate()
 
   render() {
     return (
