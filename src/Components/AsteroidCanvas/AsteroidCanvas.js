@@ -151,24 +151,43 @@ class AsteroidCanvas extends Component {
 
     let balls = [];
     for (var i = 0; i < pongColors.length * 2; i++) {
-      let size = getRandomIntInclusive(10, 20);
+      let size = getRandomIntInclusive(6, 20);
       let points = polyPoints(size);
 
       balls.push({
         id: i,
         x: getRandomIntInclusive(0, containW),
         y: getRandomIntInclusive(0, containH),
-        velX: getRandomIntInclusive(-2, 2),
-        velY: getRandomIntInclusive(-2, 2),
+        velX:
+          parseFloat(`0.${getRandomIntInclusive(0, 9)}`) *
+          (Math.round(Math.random()) * 2 - 1),
+        velY:
+          parseFloat(`0.${getRandomIntInclusive(0, 9)}`) *
+          (Math.round(Math.random()) * 2 - 1),
+        //   velX: parseFloat(
+        //     `${getRandomIntInclusive(-1, 1)}.${getRandomIntInclusive(
+        //       0,
+        //       9
+        //     )}`
+        //   ),
+        //   velY: parseFloat(
+        //     `${getRandomIntInclusive(-1, 1)}.${getRandomIntInclusive(
+        //       0,
+        //       9
+        //     )}`
+        //   ),
         //   color: marioColors[i],
         color: pongColors[i % pongColors.length],
         //   color: '#fff',
         size: size,
-        rotationSpeed: getRandomIntInclusive(-2, 2),
+        rotationSpeed: getRandomIntInclusive(-2, 2, false),
         rotation: 0,
         points: points
       });
     }
+
+    console.log('%c Balls', 'font-size: 16px');
+    console.log(balls);
 
     this.setState({
       containW,

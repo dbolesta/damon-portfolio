@@ -1,8 +1,15 @@
 // random number where the provided min/max numbers are eligible for selection
-export const getRandomIntInclusive = (min, max) => {
+// optional 3rd param, if false, will return 1 if value is 0 (doesn't allow 0 to be an answer)
+export const getRandomIntInclusive = (min, max, allowZero = true) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  let value = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  if (value === 0 && !allowZero) {
+    return value + 1;
+  } else {
+    return value;
+  }
 };
 
 export function calculateVisibilityForFooter(
