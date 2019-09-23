@@ -129,8 +129,8 @@ class AsteroidCanvas extends Component {
         id: i,
         x: getRandomIntInclusive(0, containW),
         y: getRandomIntInclusive(0, containH),
-        velX: getRandomIntInclusive(-7, 7),
-        velY: getRandomIntInclusive(-7, 7),
+        velX: getRandomIntInclusive(-2, 2),
+        velY: getRandomIntInclusive(-2, 2),
         color:
           'rgb(' +
           getRandomIntInclusive(0, 255) +
@@ -169,22 +169,28 @@ class AsteroidCanvas extends Component {
 
     // wrap objects when they get to the edges of the canvas
     for (var i in ballCopy) {
-      if (ballCopy[i].x - ballCopy[i].size >= this.state.containW) {
-        ballCopy[i].x = 1 - ballCopy[i].size;
+      if (
+        ballCopy[i].x - ballCopy[i].size * 4 >=
+        this.state.containW
+      ) {
+        ballCopy[i].x = 1 - ballCopy[i].size * 4;
       }
-      if (ballCopy[i].x + ballCopy[i].size <= 0) {
-        ballCopy[i].x = this.state.containW + ballCopy[i].size;
+      if (ballCopy[i].x + ballCopy[i].size * 4 <= 0) {
+        ballCopy[i].x = this.state.containW + ballCopy[i].size * 4;
       }
-      if (ballCopy[i].y - ballCopy[i].size >= this.state.containH) {
-        ballCopy[i].y = 1 - ballCopy[i].size;
+      if (
+        ballCopy[i].y - ballCopy[i].size * 4 >=
+        this.state.containH
+      ) {
+        ballCopy[i].y = 1 - ballCopy[i].size * 4;
       }
-      if (ballCopy[i].y + ballCopy[i].size <= 0) {
-        ballCopy[i].y = this.state.containH + ballCopy[i].size;
+      if (ballCopy[i].y + ballCopy[i].size * 4 <= 0) {
+        ballCopy[i].y = this.state.containH + ballCopy[i].size * 4;
       }
       ballCopy[i].x += ballCopy[i].velX;
       ballCopy[i].y += ballCopy[i].velY;
 
-      ballCopy[i].rotation += ballCopy[i].rotationSpeed;
+      ballCopy[i].rotation += ballCopy[i].rotationSpeed * 0.3;
     }
 
     this.setState({ balls: ballCopy });
@@ -252,7 +258,7 @@ class Canvas extends React.Component {
     //  const height = `${containH}px`;
     ctx.save();
 
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2;
 
     // use this for clean clear
     ctx.clearRect(0, 0, width, height);
@@ -296,20 +302,25 @@ class Canvas extends React.Component {
     // some prototypes
     Ball.prototype.draw = function() {
       // console.log('should be drawing...');
+
+      // ctx.rotate(this.rotation);
+      ctx.save();
+
+      ctx.translate(this.x, this.y);
+      // ctx.rotate(this.rotation);
+
+      ctx.rotate((this.rotation * Math.PI) / 180);
+
       ctx.beginPath();
       // ctx.fillStyle = this.color;
       ctx.strokeStyle = this.color;
 
+      // rotation here?
+
       // ctx.moveTo(this.x, this.y);
-      ctx.moveTo(
-        this.points[0].x + this.x,
-        this.points[0].y + this.y
-      );
+      ctx.moveTo(this.points[0].x, this.points[0].y);
       for (var i = 1; i < this.points.length; i++) {
-        ctx.lineTo(
-          this.points[i].x + this.x,
-          this.points[i].y + this.y
-        );
+        ctx.lineTo(this.points[i].x, this.points[i].y);
       }
       ctx.closePath();
 
@@ -352,6 +363,7 @@ class Canvas extends React.Component {
       // ctx.stroke();
 
       // ctx.fill();
+      ctx.restore();
     };
 
     //  console.log('%c Uh here wtf, stete?', 'font-size: 16px');
@@ -389,7 +401,7 @@ class Canvas extends React.Component {
     //  ctx.rotate((angle * Math.PI) / 180);
     //  ctx.strokeStyle = '#2441E8';
     //  ctx.strokeRect(-width / 4, -height / 4, width / 2, height / 2);
-    ctx.restore();
+    //  ctx.restore();
   }
 
   render() {
