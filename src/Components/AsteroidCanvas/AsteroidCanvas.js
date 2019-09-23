@@ -88,11 +88,6 @@ function polyPoints(size) {
 
   pointList.push({ x: xrand + 3 * size, y: yrand + 2 * size });
 
-  //  xrand = Math.round(Math.random() * size - size / 2);
-  //  yrand = Math.round(Math.random() * size - size / 2);
-
-  //  pointList.push({ x: xrand + 5 * size, y: yrand + 3 * size });
-
   return pointList;
 }
 
@@ -160,25 +155,11 @@ class AsteroidCanvas extends Component {
         y: getRandomIntInclusive(0, containH),
         velX:
           parseFloat(`0.${getRandomIntInclusive(0, 9)}`) *
-          (Math.round(Math.random()) * 2 - 1),
+          (Math.round(Math.random()) * 2 - 1), // randomly make negative or not
         velY:
           parseFloat(`0.${getRandomIntInclusive(0, 9)}`) *
           (Math.round(Math.random()) * 2 - 1),
-        //   velX: parseFloat(
-        //     `${getRandomIntInclusive(-1, 1)}.${getRandomIntInclusive(
-        //       0,
-        //       9
-        //     )}`
-        //   ),
-        //   velY: parseFloat(
-        //     `${getRandomIntInclusive(-1, 1)}.${getRandomIntInclusive(
-        //       0,
-        //       9
-        //     )}`
-        //   ),
-        //   color: marioColors[i],
-        color: pongColors[i % pongColors.length],
-        //   color: '#fff',
+        color: pongColors[i % pongColors.length], // since we loop throuh colors twice, need to use mod to select colors on second loop
         size: size,
         rotationSpeed: getRandomIntInclusive(-2, 2, false),
         rotation: 0,
@@ -186,16 +167,11 @@ class AsteroidCanvas extends Component {
       });
     }
 
-    console.log('%c Balls', 'font-size: 16px');
-    console.log(balls);
-
     this.setState({
       containW,
       containH,
       balls
     });
-    console.log('bro im mounting!');
-    console.dir(this.state);
   }
 
   componentWillUnmount() {
