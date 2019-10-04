@@ -14,6 +14,7 @@ const BioContainer = styled.div`
 const BioWrapper = styled.div`
   padding: 6rem 0;
   width: 600px;
+  z-index: 1;
 
   h1 {
     margin-top: 0;
@@ -28,7 +29,7 @@ const ColorSlice = styled.div`
     ${props => props.sideValue}: 0;
     position: absolute;
     height: 80%;
-    width: 80%;
+    width: 180%;
     /* opacity: 0.5; */
     mix-blend-mode: hard-light;
   }
@@ -74,17 +75,21 @@ const Bio = props => {
           I want you to believe that 'www' stands for "Wow, wonderful
           website!"
         </p> */}
-        <h1>Lorem, ipsum dolor.</h1>
+        <h1>Hi, I'm Damon</h1>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Nostrum natus consectetur inventore dicta modi ipsa
-          dignissimos quam deleniti eveniet vero!
+          I make websites and games with JavaScript. After studying
+          Web Applications and Development at NYU, I went on to work
+          on various websites on platforms like Shopify and Wordpress,
+          create websites from scratch using plain JS or frameworks
+          like React, and create browser-based games with frameworks
+          like Phaser.
         </p>
+
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. At
-          minima pariatur repellendus accusantium placeat deserunt non
-          nesciunt minus vitae maxime, laboriosam magni, omnis veniam
-          adipisci?
+          I believe the web is one of the most important platforms
+          ever created, and I am always eager to learn about new
+          technologies to help increase the web's usefulness and
+          versatility. Bio is WIP
         </p>
       </BioWrapper>
       <ColorSlice
