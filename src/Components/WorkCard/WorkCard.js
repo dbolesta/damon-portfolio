@@ -120,7 +120,15 @@ const Bottom = styled.div`
 `;
 
 const WorkCard = props => {
-  const { category, description, image, tech, title } = props.data;
+  const {
+    category,
+    description,
+    image,
+    tech,
+    title,
+    site_link,
+    github_link
+  } = props.data;
 
   console.log(props.data);
 
@@ -152,8 +160,12 @@ const WorkCard = props => {
             <p>{description[0].text}</p>
           </div>
           <div className="links-container">
-            <a href="">Visit Site</a>
-            <a href="">View on GitHub</a>
+            <a href={site_link.url}>
+              {category === 'Site' ? 'Visit Site' : 'Play In Browser'}
+            </a>
+            {github_link.url ? (
+              <a href={github_link.url}>View on GitHub</a>
+            ) : null}
           </div>
         </Bottom>
       </WorkCardWrapper>
