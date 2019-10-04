@@ -10,7 +10,7 @@ const WorkCardContainer = styled.div`
   /* background-color: #f1fffe; */
   margin: 1rem;
   /* min-width: 34rem; */
-  flex: 0 0 45%;
+  flex: 1 0 45%;
   overflow: hidden;
 
   /* box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4); */
@@ -24,6 +24,10 @@ const WorkCardWrapper = styled.div`
   /* flex-wrap: wrap; */
   flex-direction: column;
   height: 100%;
+
+  &:hover .img-container {
+    transform: scale(1.1);
+  }
 `;
 
 const Top = styled.div`
@@ -36,15 +40,13 @@ const Top = styled.div`
     flex-basis: 30%;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-size: 0; /* weird spacing under image fix */
-    height: 100%; /* same but for game (rect) images lol */
+    height: auto; /* same but for game (rect) images lol */
     /* transform: translate(-30%, -30%); */
+    align-self: flex-start;
+    flex-shrink: 0;
 
     img {
       width: 100%;
-    }
-
-    &:hover {
-      transform: scale(1.1);
     }
   }
 
