@@ -3,15 +3,15 @@ import styled, { keyframes } from 'styled-components';
 
 import WorkCard from '../WorkCard';
 
+// maybe use these if canvas fails..?
 import asteroid from '../../Images/asteroidtest3.svg';
 import asteroidRed from '../../Images/asteroidRed.svg';
 import asteroidBlue from '../../Images/asteroidBlue.svg';
 import asteroidYellow from '../../Images/asteroidYellow.svg';
 import asteroidGreen from '../../Images/asteroidGreen.svg';
 
-import AsteroidCanvas from '../AsteroidCanvas';
-
-console.log('Ayyyy, big boy');
+import WsBgAsteroids from '../WsBgAsteroids';
+import WsBgCircle from '../WsBgCircle';
 
 const WorkStripeContainer = styled.div`
   text-align: left;
@@ -55,10 +55,6 @@ const WorkStripeName = styled.h2`
 `;
 
 const WorkStripeWrapper = styled.div`
-  /* border: 1px solid red; */
-  /* width: 100vw; */
-  /* overflow-x: scroll; */
-
   position: relative;
   z-index: 2;
   margin: 0 -2rem; /* maybe messy, consider refactoring */
@@ -70,58 +66,7 @@ const WorkCardsContainer = styled.div`
   justify-content: center;
 `;
 
-const CircleBg = styled.div`
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;
-
-  span {
-    position: absolute;
-    mix-blend-mode: difference;
-
-    &:nth-of-type(1) {
-      top: 6%;
-      left: -9%;
-      width: 50rem;
-      height: 50rem;
-      background-color: pink;
-      border-radius: 50%;
-    }
-    &:nth-of-type(2) {
-      top: -6%;
-      right: -24%;
-      width: 50rem;
-      height: 50rem;
-      background-color: blue;
-      border-radius: 50%;
-    }
-    &:nth-of-type(3) {
-      bottom: 25%;
-      width: 60rem;
-      height: 60rem;
-      background-color: red;
-      border-radius: 50%;
-    }
-  }
-`;
-
-// @keyframes spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
-
 const asteroidAnim = (top, right, bottom, left) => keyframes`
-  
   0% {
     top: 40%;
     left: 20%;
@@ -139,12 +84,6 @@ const asteroidAnim = (top, right, bottom, left) => keyframes`
     left: 20%;
   }
 `;
-
-// &.slide {
-//   animation: ${slideAnim(null, null, '-38px', '-21px')} 1s
-//     cubic-bezier(0.25, 0.25, 0, 1.015) forwards;
-//   animation-delay: 0.3s;
-// }
 
 const AsteroidsContainer = styled.div`
   left: 0;
@@ -220,24 +159,9 @@ const WorkStripe = props => {
         </WorkCardsContainer>
       </WorkStripeWrapper>
 
-      {props.circleBg ? (
-        <CircleBg>
-          <span></span>
-          <span></span>
-          <span></span>
-        </CircleBg>
-      ) : null}
+      {props.circleBg ? <WsBgCircle /> : null}
 
-      {props.games ? (
-        <AsteroidsContainer>
-          <AsteroidCanvas />
-          {/* <img src={asteroid} />
-          <img src={asteroidRed} />
-          <img src={asteroidYellow} />
-          <img src={asteroidGreen} />
-          <img src={asteroidBlue} /> */}
-        </AsteroidsContainer>
-      ) : null}
+      {props.games ? <WsBgAsteroids /> : null}
     </WorkStripeContainer>
   );
 };

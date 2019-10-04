@@ -3,19 +3,6 @@ import styled from 'styled-components';
 
 import { getRandomIntInclusive } from '../../Utils/utils';
 
-// mario colors
-// sky blue: #9494FF;
-// mtn green: #109400;
-// tree/bush green: #82CE2C;
-// brick brown: #9C4A00;
-// ? block: #E79C21;
-// dungeon blue : #007B8C
-// castle grey: #BCBCBC;
-// lava red: #D62A16
-// water blue: #2441E8;
-// coral pink: #F15EA1;
-// coral pink 2: #CC2276;
-
 const CanvasContainer = styled.div`
   position: absolute;
   top: 0;
@@ -180,13 +167,9 @@ class AsteroidCanvas extends Component {
 
   // where all updating of asteroid information will occur
   updateAnimationState() {
-    //  this.setState(prevState => ({ angle: prevState.angle + 1 }));
-
     let ballCopy = { ...this.state.balls };
 
-    //  console.log('%c BallCopyLoop', 'font-size: 16px');
-
-    // wrap objects when they get to the edges of the canvas
+    // wrap objects (x, y position) when they get to the edges of the canvas
     for (var i in ballCopy) {
       if (
         ballCopy[i].x - ballCopy[i].size * 4 >=
@@ -206,6 +189,8 @@ class AsteroidCanvas extends Component {
       if (ballCopy[i].y + ballCopy[i].size * 4 <= 0) {
         ballCopy[i].y = this.state.containH + ballCopy[i].size * 4;
       }
+
+      // move at assigned velocity
       ballCopy[i].x += ballCopy[i].velX;
       ballCopy[i].y += ballCopy[i].velY;
 
@@ -214,19 +199,10 @@ class AsteroidCanvas extends Component {
 
     this.setState({ balls: ballCopy });
 
-    //  console.log('%c Ball Copy', 'font-size: 16px');
-    //  console.log(ballCopy);
-
     this.rAF = requestAnimationFrame(this.updateAnimationState);
   }
 
   render() {
-    //  console.log(
-    //    '%c About to pass state... we there?',
-    //    'font-size: 16px'
-    //  );
-    //  console.log(this.state.balls);
-
     return (
       <CanvasContainer ref={this.containerRef}>
         <Canvas
@@ -251,30 +227,15 @@ class Canvas extends React.Component {
     this.canvasRef = React.createRef();
   }
 
-  componentDidMount() {
-    console.log(
-      '%c Canvas Mount!! Where the balls at',
-      'font-size: 16px'
-    );
-    console.log(this.props);
-
-    //  this.setState({
-    //    balls: balls
-    //  });
-  }
+  componentDidMount() {}
 
   componentDidUpdate() {
     const { angle, containW, containH } = this.props;
 
-    //  console.log(`hi im the canvas updating`);
-    //  console.log(`w: ${containW}`);
-    //  console.log(`h: ${containH}`);
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-    //  const width = `${containW}px`;
-    //  const height = `${containH}px`;
     ctx.save();
 
     ctx.lineWidth = 2;
@@ -282,12 +243,7 @@ class Canvas extends React.Component {
     // use this for clean clear
     ctx.clearRect(0, 0, width, height);
 
-    // use this for fadded effect
-    //  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
-    //  ctx.fillRect(0, 0, width, height);
-
-    /// start okey...
-
+    // these 2 functions should... probably.. not be in the update function...?
     function Shape(x, y, velX, velY) {
       this.x = x;
       this.y = y;
@@ -320,13 +276,10 @@ class Canvas extends React.Component {
 
     // some prototypes
     Ball.prototype.draw = function() {
-      // console.log('should be drawing...');
-
-      // ctx.rotate(this.rotation);
       ctx.save();
 
+      // move based on translations, dont actually change x or y position
       ctx.translate(this.x, this.y);
-      // ctx.rotate(this.rotation);
 
       ctx.rotate((this.rotation * Math.PI) / 180); // extra math so we can use degress instead of radians
 
