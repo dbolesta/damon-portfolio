@@ -12,6 +12,7 @@ import asteroidGreen from '../../Images/asteroidGreen.svg';
 
 import WsBgAsteroids from '../WsBgAsteroids';
 import WsBgCircle from '../WsBgCircle';
+import WsBgPerspective from '../WsBgPerspective';
 
 const WorkStripeContainer = styled.div`
   text-align: left;
@@ -159,7 +160,7 @@ const WorkStripe = props => {
         </WorkCardsContainer>
       </WorkStripeWrapper>
 
-      {props.circleBg ? <WsBgCircle /> : null}
+      {props.circleBg ? <WsBgPerspective /> : null}
 
       {props.games ? <WsBgAsteroids /> : null}
     </WorkStripeContainer>
