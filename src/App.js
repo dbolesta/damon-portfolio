@@ -42,7 +42,7 @@ function App() {
         <FootWrap>
           <div className="App">
             <LeftColumn>
-              <SideHeader></SideHeader>
+              <SideHeader />
             </LeftColumn>
             <ContentWrap>
               <Header />

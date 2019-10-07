@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import FooterStatic from '../FooterStatic';
+
 const FootWrapContainer = styled.div`
   background-color: blue;
   background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%);
@@ -16,7 +18,9 @@ const FootWrap = ({ children }) => {
   return (
     <FootWrapContainer>
       {children}
-      <FooterViewport>content</FooterViewport>
+      <FooterViewport>
+        <FooterStatic />
+      </FooterViewport>
     </FootWrapContainer>
   );
 };

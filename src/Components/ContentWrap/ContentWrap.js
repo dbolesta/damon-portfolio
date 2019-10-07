@@ -5,8 +5,8 @@ const ContentWrapContainer = styled.div`
   width: 80%;
   margin-left: auto;
   margin-right: 0;
+  z-index: 3;
 `;
-// #ae4c00 0%,
 
 const ContentWrap = ({ children }) => {
   return (
