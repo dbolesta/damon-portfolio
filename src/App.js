@@ -23,10 +23,11 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   const [data, setData] = useState(null);
 
+  // grab refs of each section we want to be able to scroll to on click
   const scrollBio = useRef(null);
-  const scrollWorks = useRef(null);
+  const scrollSites = useRef(null);
   const scrollGames = useRef(null);
-  // const scrollFooter = useRef(null);
+  const scrollFooter = useRef(null);
 
   useEffect(() => {
     async function fetchMyAPI() {
@@ -37,27 +38,25 @@ function App() {
     fetchMyAPI();
   }, []);
 
-  useEffect(() => {
-    console.log('%c refs in useeffect', 'font-size: 16px');
-
-    console.log(scrollBio);
-    console.log(scrollWorks);
-    console.log(scrollGames);
-  }, [scrollBio, scrollWorks, scrollGames]);
-  // console.log('here in your armmsssss');
-  // console.log(data);
-
-  console.log('refs');
-  console.log(scrollBio, scrollWorks, scrollGames);
+  // used as click events for navigation, will scroll to ref of component passed
+  const scrollToIt = scrollRef => {
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <GlobalStyle />
-        <FootWrap>
+        <FootWrap ref={scrollFooter}>
           <div className="App">
             <LeftColumn
-              scrollRefs={{ scrollBio, scrollWorks, scrollGames }}
+              scrollRefs={{
+                scrollBio,
+                scrollSites,
+                scrollGames,
+                scrollFooter
+              }}
+              clickHandler={scrollToIt}
             >
               <SideHeader />
             </LeftColumn>
@@ -73,7 +72,7 @@ function App() {
                     data={data.sites}
                     sites
                     circleBg
-                    ref={scrollWorks}
+                    ref={scrollSites}
                   />
                   <WorkStripe
                     bgColor={theme.colors.asteroid.black}

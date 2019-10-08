@@ -135,12 +135,10 @@ const AsteroidsContainer = styled.div`
   } */
 `;
 
-const WorkStripe = props => {
-  console.log(`inside Workstripe ${props.category}`);
-  console.log(props.data);
-
+const WorkStripe = React.forwardRef((props, ref) => {
   return (
     <WorkStripeContainer
+      ref={ref}
       className="rotate-theme"
       bgColor={props.bgColor}
     >
@@ -165,6 +163,6 @@ const WorkStripe = props => {
       {props.games ? <WsBgAsteroids /> : null}
     </WorkStripeContainer>
   );
-};
+});
 
 export default WorkStripe;

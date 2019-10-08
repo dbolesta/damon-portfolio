@@ -51,14 +51,14 @@ const ColorSlice = styled.div`
   }
 `;
 
-const Bio = props => {
+const Bio = React.forwardRef((props, ref) => {
   // lazy initial state
   const [colorArray] = useState(() => {
     return ['#6F308E', '#FFD330', '#EE4F2F', '#00A894'];
   });
 
   return (
-    <BioContainer>
+    <BioContainer ref={ref}>
       {/* green red blue yellow */}
       <ColorSlice
         colorValues={[colorArray[0], colorArray[1]]}
@@ -99,6 +99,6 @@ const Bio = props => {
       />
     </BioContainer>
   );
-};
+});
 
 export default Bio;

@@ -14,15 +14,15 @@ const FooterViewport = styled.div`
   width: 100%;
 `;
 
-const FootWrap = ({ children }) => {
+const FootWrap = React.forwardRef((props, ref) => {
   return (
     <FootWrapContainer>
-      {children}
-      <FooterViewport>
+      {props.children}
+      <FooterViewport ref={ref}>
         <FooterStatic />
       </FooterViewport>
     </FootWrapContainer>
   );
-};
+});
 
 export default FootWrap;

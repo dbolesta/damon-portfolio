@@ -29,10 +29,10 @@ const LeftNav = styled.span`
   }
 `;
 
-const LeftColumn = ({ children, scrollRefs }) => {
-  console.log('%c ScrollRefs', 'font-size: 16px');
+const LeftColumn = props => {
+  console.log('%c Props?', 'font-size: 16px');
 
-  console.log({ scrollRefs });
+  console.log(props);
 
   function scrollIt(compRef) {
     compRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -43,15 +43,37 @@ const LeftColumn = ({ children, scrollRefs }) => {
   return (
     <LeftColumnContainer>
       <LeftColumnContent>
-        {children}
+        {props.children}
         <LeftNav>
-          <span onClick={() => scrollIt(scrollRefs.scrollBio)}>
+          <span
+            onClick={() =>
+              props.clickHandler(props.scrollRefs.scrollBio)
+            }
+          >
             Bio
           </span>
 
-          <span>Sites</span>
-          <span>Games</span>
-          <span>Et cetera</span>
+          <span
+            onClick={() =>
+              props.clickHandler(props.scrollRefs.scrollSites)
+            }
+          >
+            Sites
+          </span>
+          <span
+            onClick={() =>
+              props.clickHandler(props.scrollRefs.scrollGames)
+            }
+          >
+            Games
+          </span>
+          <span
+            onClick={() =>
+              props.clickHandler(props.scrollRefs.scrollFooter)
+            }
+          >
+            Et cetera
+          </span>
         </LeftNav>
       </LeftColumnContent>
     </LeftColumnContainer>
