@@ -29,13 +29,25 @@ const LeftNav = styled.span`
   }
 `;
 
-const LeftColumn = ({ children }) => {
+const LeftColumn = ({ children, scrollRefs }) => {
+  console.log('%c ScrollRefs', 'font-size: 16px');
+
+  console.log({ scrollRefs });
+
+  function scrollIt(compRef) {
+    compRef.current.scrollIntoView({ behavior: 'smooth' });
+    // console.log(compRef);
+    // console.log(compRef);
+  }
+
   return (
     <LeftColumnContainer>
       <LeftColumnContent>
         {children}
         <LeftNav>
-          <span>Bio</span>
+          <span onClick={() => scrollIt(scrollRefs.scrollBio)}>
+            Bio
+          </span>
 
           <span>Sites</span>
           <span>Games</span>

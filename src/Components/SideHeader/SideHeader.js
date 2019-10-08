@@ -26,7 +26,7 @@ const SideHeaderContainer = styled.div`
   }
 `;
 
-const SideHeader = () => {
+const SideHeader = props => {
   return (
     <SideHeaderContainer>
       <h1>damon.js</h1>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 import Header from './Components/Header';
@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   const [data, setData] = useState(null);
 
+  const scrollBio = useRef(null);
+  const scrollWorks = useRef(null);
+  const scrollGames = useRef(null);
+  // const scrollFooter = useRef(null);
+
   useEffect(() => {
     async function fetchMyAPI() {
       let data = await fetchData();
@@ -32,8 +37,18 @@ function App() {
     fetchMyAPI();
   }, []);
 
+  useEffect(() => {
+    console.log('%c refs in useeffect', 'font-size: 16px');
+
+    console.log(scrollBio);
+    console.log(scrollWorks);
+    console.log(scrollGames);
+  }, [scrollBio, scrollWorks, scrollGames]);
   // console.log('here in your armmsssss');
   // console.log(data);
+
+  console.log('refs');
+  console.log(scrollBio, scrollWorks, scrollGames);
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,12 +56,14 @@ function App() {
         <GlobalStyle />
         <FootWrap>
           <div className="App">
-            <LeftColumn>
+            <LeftColumn
+              scrollRefs={{ scrollBio, scrollWorks, scrollGames }}
+            >
               <SideHeader />
             </LeftColumn>
             <ContentWrap>
               <Header />
-              <Bio />
+              <Bio ref={scrollBio} />
               {data ? (
                 <React.Fragment>
                   <WorkStripe
@@ -56,6 +73,7 @@ function App() {
                     data={data.sites}
                     sites
                     circleBg
+                    ref={scrollWorks}
                   />
                   <WorkStripe
                     bgColor={theme.colors.asteroid.black}
@@ -64,6 +82,7 @@ function App() {
                     data={data.games}
                     games
                     redDot
+                    ref={scrollGames}
                   />
                 </React.Fragment>
               ) : null}

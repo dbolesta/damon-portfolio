@@ -92,16 +92,16 @@ const StarsContainer = styled.div`
   height: 90%;
 `;
 
-const StarsParallax = styled.div`
+// use attrs to avoid styled-components warning about generating over 200 classes
+const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
+  style: {
+    bottom: bottomValue + '%'
+  }
+}))`
   position: absolute;
   left: 0;
   right: 0;
-  /* top: 0; */
   height: 100%;
-
-  /* border: 1px solid red; */
-
-  bottom: ${props => props.bottomValue}%;
 `;
 
 // prettier-ignore
