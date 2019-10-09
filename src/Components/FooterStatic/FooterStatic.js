@@ -75,8 +75,13 @@ const Mountain = styled.div`
 
   /* transition: all 0.3s ease-in-out; */
 
-  span {
+  a {
     color: white;
+    font-family: "Varela Round";
+    text-decoration: none;
+    color: #f6dd3b;
+    text-shadow: 1px 1px 0px #FC2376;
+    font-weight: 600;
   }
 `;
 
@@ -268,7 +273,7 @@ const Footer = props => {
           heightValue={38}
           leftValue={50}
         >
-          <span>GitHurb</span>
+          <a href="https://github.com/dbolesta">GitHub</a>
         </Mountain>
       );
     } else {
@@ -297,7 +302,11 @@ const Footer = props => {
           heightValue={40}
           leftValue={x === 3 ? 25 : 65}
         >
-          <span>{x === 3 ? 'LinkedIn' : 'Contact'}</span>
+          {x === 3 ? (
+            <a href="http://www.google.com">LinkedIn</a>
+          ) : (
+            <a href="mailto:dbolesta@gmail.com">Contact</a>
+          )}
         </Mountain>
       );
     } else {
