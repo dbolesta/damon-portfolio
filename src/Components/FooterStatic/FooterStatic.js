@@ -93,14 +93,17 @@ const StarsContainer = styled.div`
 `;
 
 // use attrs to avoid styled-components warning about generating over 200 classes
-const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
-  style: {
-    bottom: bottomValue + '%'
-  }
-}))`
+// const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
+//   style: {
+//     bottom: bottomValue + '%'
+//   }
+// }))`
+
+const StarsParallax = styled.div`
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
   height: 100%;
 `;
 
@@ -216,18 +219,18 @@ const Footer = props => {
   });
 
   // scroll state updates & event listener
-  useEffect(() => {
-    const handleScroll = () => {
-      // uses util
-      setPercentScrolled(getScrollPercent());
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     // uses util
+  //     setPercentScrolled(getScrollPercent());
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   // create stars
   const randStars = [];
