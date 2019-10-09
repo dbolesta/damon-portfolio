@@ -22,24 +22,24 @@ const LeftNav = styled.span`
 
   span {
     background-color: ${props => props.theme.colors.watermelon};
-    /* -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text; */
     padding: 0.2rem;
     margin: 10px;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: ${props => props.theme.colors.yellow};
+    }
+    &:active {
+      background-color: ${props => props.theme.colors.yellow};
+      color: ${props => props.theme.colors.watermelon};
+      transition: all 0.02s ease-in-out;
+    }
   }
 `;
 
 const LeftColumn = props => {
-  console.log('%c Props?', 'font-size: 16px');
-
-  console.log(props);
-
-  function scrollIt(compRef) {
-    compRef.current.scrollIntoView({ behavior: 'smooth' });
-    // console.log(compRef);
-    // console.log(compRef);
-  }
-
   return (
     <LeftColumnContainer>
       <LeftColumnContent>

@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  // data to store prismic api fetching
   const [data, setData] = useState(null);
 
   // grab refs of each section we want to be able to scroll to on click
@@ -61,7 +62,15 @@ function App() {
               <SideHeader />
             </LeftColumn>
             <ContentWrap>
-              <Header />
+              <Header
+                scrollRefs={{
+                  scrollBio,
+                  scrollSites,
+                  scrollGames,
+                  scrollFooter
+                }}
+                clickHandler={scrollToIt}
+              />
               <Bio ref={scrollBio} />
               {data ? (
                 <React.Fragment>

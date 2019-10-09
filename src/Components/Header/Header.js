@@ -25,21 +25,48 @@ const TopNavItem = styled.li`
   font-size: 1.5rem;
   padding: 1.2rem 1.5rem;
   font-weight: 100;
-  /* padding-top: 2rem; */
   color: ${props => props.theme.colors.watermelon};
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    color: ${props => props.theme.colors.yellow};
+  }
 `;
 
-const navItems = ['Bio', 'Sites', 'Games', 'Et cetera'];
-const navColors = ['red', 'green', 'blue', 'purple'];
-
-const Header = () => {
+const Header = props => {
   return (
     <HeaderContainer>
       <TopNavList>
-        {navItems.map((navItem, i) => {
-          console.log(navColors[i]);
-          return <TopNavItem>{navItem}</TopNavItem>;
-        })}
+        <TopNavItem
+          onClick={() =>
+            props.clickHandler(props.scrollRefs.scrollBio)
+          }
+        >
+          Bio
+        </TopNavItem>
+
+        <TopNavItem
+          onClick={() =>
+            props.clickHandler(props.scrollRefs.scrollSites)
+          }
+        >
+          Sites
+        </TopNavItem>
+        <TopNavItem
+          onClick={() =>
+            props.clickHandler(props.scrollRefs.scrollGames)
+          }
+        >
+          Games
+        </TopNavItem>
+        <TopNavItem
+          onClick={() =>
+            props.clickHandler(props.scrollRefs.scrollFooter)
+          }
+        >
+          Et cetera
+        </TopNavItem>
       </TopNavList>
     </HeaderContainer>
   );
