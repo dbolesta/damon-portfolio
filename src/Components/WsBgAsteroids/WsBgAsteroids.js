@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 import { getRandomIntInclusive } from '../../Utils/utils';
 
+// helpful article
+// https://philna.sh/blog/2018/09/27/techniques-for-animating-on-the-canvas-in-react/
+
 const CanvasContainer = styled.div`
   position: absolute;
   top: 0;
@@ -11,7 +14,7 @@ const CanvasContainer = styled.div`
   bottom: 0;
 `;
 
-// function to create semi-random asteroic shapes to use in canvas draw
+// function to create semi-random asteroid shapes to use in canvas draw
 // bless this beautiful boy:
 // https://embed.com/typescript-games/html-canvas-asteroids.html
 function polyPoints(size) {
@@ -101,24 +104,11 @@ class AsteroidCanvas extends Component {
 
     // make vars for canvas height and width, since we'll need em multiple times
     const containW = this.containerRef.current.clientWidth;
-    const containH = this.containerRef.current.clientHeight;
+    const containH = this.containerRef.current.clientHeight + 50; // maybe fixes canvas height not reaching bottom sometimes..?
 
     // make empty array, and fill it with initial data for asteroids
     // each object has information for 1 asteroid
-
-    let marioColors = [
-      '#9494FF',
-      '#109400',
-      '#82CE2C',
-      '#9C4A00',
-      '#E79C21',
-      '#007B8C',
-      '#BCBCBC',
-      '#D62A16',
-      '#2441E8',
-      '#F15EA1',
-      '#CC2276'
-    ];
+    let balls = [];
 
     let pongColors = [
       '#D0E671',
@@ -131,7 +121,6 @@ class AsteroidCanvas extends Component {
       'hsl(23, 83%, 68%)'
     ];
 
-    let balls = [];
     for (var i = 0; i < pongColors.length * 2; i++) {
       let size = getRandomIntInclusive(6, 20);
       let points = polyPoints(size);
@@ -227,68 +216,38 @@ class Canvas extends React.Component {
     this.canvasRef = React.createRef();
   }
 
-  componentDidMount() {}
-
   componentDidUpdate() {
-    const { angle, containW, containH } = this.props;
+    const { balls } = this.props;
 
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-    ctx.save();
 
+    //width of asteroids lines
     ctx.lineWidth = 2;
 
     // use this for clean clear
     ctx.clearRect(0, 0, width, height);
 
-    // these 2 functions should... probably.. not be in the update function...?
-    function Shape(x, y, velX, velY) {
-      this.x = x;
-      this.y = y;
-      this.velX = velX;
-      this.velY = velY;
-    }
+    // // use this for fadded effect
+    // ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    // ctx.fillRect(0, 0, width, height);
 
-    function Ball(
-      x,
-      y,
-      velX,
-      velY,
-      color,
-      size,
-      points,
-      rotation,
-      rotationSpeed
-    ) {
-      Shape.call(this, x, y, velX, velY);
-
-      this.color = color;
-      this.size = size;
-      this.points = points;
-      this.rotation = rotation;
-      this.rotationSpeed = rotationSpeed;
-    }
-
-    Ball.prototype = Object.create(Shape.prototype);
-    Ball.prototype.constructor = Ball;
-
-    // some prototypes
-    Ball.prototype.draw = function() {
+    for (var i in balls) {
       ctx.save();
 
       // move based on translations, dont actually change x or y position
-      ctx.translate(this.x, this.y);
+      ctx.translate(balls[i].x, balls[i].y);
 
-      ctx.rotate((this.rotation * Math.PI) / 180); // extra math so we can use degress instead of radians
+      ctx.rotate((balls[i].rotation * Math.PI) / 180); // extra math so we can use degress instead of radians
 
       ctx.beginPath();
-      ctx.strokeStyle = this.color;
+      ctx.strokeStyle = balls[i].color;
 
-      ctx.moveTo(this.points[0].x, this.points[0].y);
-      for (var i = 1; i < this.points.length; i++) {
-        ctx.lineTo(this.points[i].x, this.points[i].y);
+      ctx.moveTo(balls[i].points[0].x, balls[i].points[0].y);
+      for (var j = 1; j < balls[i].points.length; j++) {
+        ctx.lineTo(balls[i].points[j].x, balls[i].points[j].y);
       }
       ctx.closePath();
 
@@ -299,32 +258,6 @@ class Canvas extends React.Component {
       ctx.stroke();
 
       ctx.restore();
-    };
-
-    const { balls } = this.props;
-
-    var newBalls = [];
-
-    Object.keys(balls).map(function(keyName, keyIndex) {
-      // use keyName to get current key's name
-      // and a[keyName] to get its value
-      newBalls.push(
-        new Ball(
-          balls[keyName].x,
-          balls[keyName].y,
-          balls[keyName].velX,
-          balls[keyName].velY,
-          balls[keyName].color,
-          balls[keyName].size,
-          balls[keyName].points,
-          balls[keyName].rotation,
-          balls[keyName].rotationSpeed
-        )
-      );
-    });
-
-    for (var i = 0; i < newBalls.length; i++) {
-      newBalls[i].draw();
     }
   } // end componentDidUpdate()
 

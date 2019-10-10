@@ -6,7 +6,10 @@ import WorkStripe from './Components/WorkStripe';
 import Footer from './Components/Footer';
 import Bio from './Components/Bio';
 
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import {
+  createGlobalStyle,
+  ThemeProvider
+} from 'styled-components/macro';
 import { globalStyles } from './Styles/global';
 import { theme } from './Styles/theme';
 
@@ -94,7 +97,6 @@ function App() {
                   />
                 </React.Fragment>
               ) : null}
-              {/* <Footer /> */}
             </ContentWrap>
           </div>
         </FootWrap>
