@@ -6,6 +6,10 @@ const ContentWrapContainer = styled.div`
   margin-left: auto;
   margin-right: 0;
   z-index: 3;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    width: 100%;
+  }
 `;
 
 const ContentWrap = ({ children }) => {

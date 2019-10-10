@@ -17,6 +17,10 @@ const WorkCardContainer = styled.div`
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 25px;
   border-radius: 25px;
+
+  &:hover .img-container {
+    transform: scale(1.1);
+  }
 `;
 
 const WorkCardWrapper = styled.div`
@@ -24,10 +28,6 @@ const WorkCardWrapper = styled.div`
   /* flex-wrap: wrap; */
   flex-direction: column;
   height: 100%;
-
-  &:hover .img-container {
-    transform: scale(1.1);
-  }
 `;
 
 const Top = styled.div`

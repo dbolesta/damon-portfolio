@@ -42,5 +42,8 @@ export const theme = {
     &::after {
       right: -199px;
     }
-  `
+  `,
+  breakpoints: {
+    mobile: '900px'
+  }
 };

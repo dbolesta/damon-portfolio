@@ -136,6 +136,7 @@ const AsteroidsContainer = styled.div`
 `;
 
 const WorkStripe = React.forwardRef((props, ref) => {
+  console.log('Workstripe is rerendering. presumably');
   return (
     <WorkStripeContainer
       ref={ref}

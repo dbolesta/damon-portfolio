@@ -6,6 +6,11 @@ const LeftColumnContainer = styled.div`
   background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%); */
   width: 20%;
   z-index: 3;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    display: none;
+    width: 0%;
+  }
 `;
 
 // container that is fixed
