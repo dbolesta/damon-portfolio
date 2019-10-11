@@ -95,10 +95,19 @@ class AsteroidCanvas extends Component {
     this.updateAnimationState = this.updateAnimationState.bind(this);
   }
 
+  // used to update canvas size on window resize
+  updateDimensions = () => {
+    this.setState({
+      containW: this.containerRef.current.clientWidth,
+      containH: this.containerRef.current.clientHeight + 50
+    });
+  };
+
   // Asteroid Container Mounted:
   // we need to initilize data, notjust width and height,
   // but starting positions, velocity, color, id data for asteroids
   componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
     // start requestAnimationFrame
     this.rAF = requestAnimationFrame(this.updateAnimationState);
 
@@ -152,6 +161,7 @@ class AsteroidCanvas extends Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.rAF);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   // where all updating of asteroid information will occur
