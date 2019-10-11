@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background: greenyellow;
-  text-align: left;
+  text-align: right;
   padding: 2rem;
   flex: 1 1 100%;
   transition: transform 0.3s cubic-bezier(0.71, 0.21, 0.4, 0.83);
@@ -16,7 +16,7 @@ const StyledMenu = styled.nav`
 
   position: fixed;
   right: 0;
-  top: 58px;
+  top: 58px; /* height of burger box */
   bottom: 0;
   z-index: 3;
 

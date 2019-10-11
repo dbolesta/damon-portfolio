@@ -6,7 +6,11 @@ import imgPlaceholder from '../../Images/website_preview_placeholder_tall.png';
 const WorkCardContainer = styled.div`
   /* padding: 0.5rem; */
   /* border-radius: 5px; */
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
+
+  background-color: ${({ category }) =>
+    category === 'Game' ? 'rgba(250, 250, 250, 0.97)' : '#fafafa'};
+
   /* background-color: #f1fffe; */
   margin: 1rem;
   /* min-width: 34rem; */
@@ -149,7 +153,7 @@ const WorkCard = props => {
   console.log(props.data);
 
   return (
-    <WorkCardContainer>
+    <WorkCardContainer category={category}>
       <WorkCardWrapper>
         <Top>
           <div className="img-container">
