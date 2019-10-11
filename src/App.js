@@ -18,6 +18,8 @@ import FootWrap from './Components/FootWrap';
 import ContentWrap from './Components/ContentWrap';
 import LeftColumn from './Components/LeftColumn';
 import SideHeader from './Components/SideHeader';
+import MobileMenu from './Components/MobileMenu';
+import MobileMenuBurger from './Components/MobileMenu/MobileMenuBurger';
 
 const GlobalStyle = createGlobalStyle`
   ${globalStyles}
@@ -66,6 +68,15 @@ function App() {
             </LeftColumn>
             <ContentWrap>
               <Header
+                scrollRefs={{
+                  scrollBio,
+                  scrollSites,
+                  scrollGames,
+                  scrollFooter
+                }}
+                clickHandler={scrollToIt}
+              />
+              <MobileMenu
                 scrollRefs={{
                   scrollBio,
                   scrollSites,

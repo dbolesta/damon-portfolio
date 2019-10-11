@@ -32,6 +32,24 @@ const TopNavItem = styled.li`
   &:hover {
     color: ${props => props.theme.colors.yellow};
   }
+
+  @media (max-width: ${props => props.theme.breakpoints.preMobile}) {
+    font-size: 1.2rem;
+    padding: 0.89rem 1.5rem;
+  }
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    display: none;
+  }
+
+  &.mobile-nav {
+    display: none;
+
+    @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+      cursor: auto;
+      display: inline-block;
+      color: ${props => props.theme.colors.yellow};
+    }
+  }
 `;
 
 const Header = props => {
@@ -67,6 +85,7 @@ const Header = props => {
         >
           Et cetera
         </TopNavItem>
+        <TopNavItem className="mobile-nav">damon.js</TopNavItem>
       </TopNavList>
     </HeaderContainer>
   );

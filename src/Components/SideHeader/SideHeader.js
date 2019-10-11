@@ -20,6 +20,11 @@ const SideHeaderContainer = styled.div`
 
     transition: all 0.4s cubic-bezier(0.57, 0.4, 0.21, 0.91);
 
+    @media (max-width: ${props =>
+        props.theme.breakpoints.preMobile}) {
+      font-size: 2.3rem;
+    }
+
     /* &:before {
       box-shadow: none;
     } */
