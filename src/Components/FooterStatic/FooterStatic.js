@@ -19,7 +19,6 @@ const FooterContainer = styled.footer`
     rgba(58, 25, 146, 1) 100%
   ); */
   height: 100%;
-  overflow-x: hidden;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%);
@@ -114,12 +113,20 @@ const StarsContainer = styled.div`
 //   }
 // }))`
 
-const StarsParallax = styled.div`
+const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
+  style: {
+    bottom: bottomValue + '%'
+  }
+}))`
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 100%;
+
+  /* background-image: url(${starSVG}), url(${starSVG});
+  background-position: 0px 0, 5px 5px;
+  background-size: 10px 10px; */
 `;
 
 // prettier-ignore
@@ -234,18 +241,18 @@ const Footer = props => {
   });
 
   // scroll state updates & event listener
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     // uses util
-  //     setPercentScrolled(getScrollPercent());
-  //   };
+  useEffect(() => {
+    const handleScroll = () => {
+      // uses util
+      setPercentScrolled(getScrollPercent());
+    };
 
-  //   window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   // create stars
   const randStars = [];
@@ -338,7 +345,7 @@ const Footer = props => {
   return (
     <FooterContainer ref={footerRef}>
       <FooterArtContainer>
-        {/* <StarsContainer>
+        <StarsContainer>
           <StarsParallax
             bottomValue={(percentScrolled * (0 - 150)) / 100 + 150} //75
           >
@@ -354,7 +361,7 @@ const Footer = props => {
           >
             {randStars.slice(47, 69)}
           </StarsParallax>
-        </StarsContainer> */}
+        </StarsContainer>
 
         <MoonTwo />
 
