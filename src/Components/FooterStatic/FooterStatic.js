@@ -19,7 +19,11 @@ const FooterContainer = styled.footer`
     rgba(58, 25, 146, 1) 100%
   ); */
   height: 100%;
-  /* overflow: hidden; */
+  overflow-x: hidden;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%);
+  }
 `;
 
 const FooterArtContainer = styled.div`
@@ -82,6 +86,12 @@ const Mountain = styled.div`
     color: #f6dd3b;
     text-shadow: 1px 1px 0px #FC2376;
     font-weight: 600;
+    font-size: 1.4rem;
+    transition: text-shadow 0.1s cubic-bezier(0.71, 0.21, 0.4, 0.83);
+
+    &:hover {
+      text-shadow: 2px 2px 0px #FC2376;
+    }
   }
 `;
 
@@ -273,7 +283,7 @@ const Footer = props => {
           heightValue={38}
           leftValue={50}
         >
-          <a href="https://github.com/dbolesta">GitHub</a>
+          <a href="https://google.com">LinkedIn</a>
         </Mountain>
       );
     } else {
@@ -299,11 +309,11 @@ const Footer = props => {
           key={x + 0.5}
           colorValue="#483d8b"
           widthValue={4}
-          heightValue={40}
+          heightValue={x === 3 ? 45 : 42.5}
           leftValue={x === 3 ? 25 : 65}
         >
           {x === 3 ? (
-            <a href="http://www.google.com">LinkedIn</a>
+            <a href="https://github.com/dbolesta">GitHub</a>
           ) : (
             <a href="mailto:dbolesta@gmail.com">Contact</a>
           )}
@@ -328,7 +338,7 @@ const Footer = props => {
   return (
     <FooterContainer ref={footerRef}>
       <FooterArtContainer>
-        <StarsContainer>
+        {/* <StarsContainer>
           <StarsParallax
             bottomValue={(percentScrolled * (0 - 150)) / 100 + 150} //75
           >
@@ -344,7 +354,7 @@ const Footer = props => {
           >
             {randStars.slice(47, 69)}
           </StarsParallax>
-        </StarsContainer>
+        </StarsContainer> */}
 
         <MoonTwo />
 

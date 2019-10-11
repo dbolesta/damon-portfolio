@@ -33,6 +33,11 @@ const WorkCardWrapper = styled.div`
 const Top = styled.div`
   display: flex;
 
+  /* fixes weird overlap for mobile */
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    margin-bottom: 3rem;
+  }
+
   .img-container {
     box-shadow: 4px 13px 30px 1px rgba(56, 56, 56, 0.2);
     border-radius: 25px;
@@ -79,6 +84,12 @@ const Top = styled.div`
         align-items: center;
         margin-right: 2rem;
 
+        @media (max-width: ${props =>
+            props.theme.breakpoints.mobile}) {
+          margin-right: 1rem;
+          justify-content: flex-start;
+        }
+
         img {
           width: 1.4rem;
         }
@@ -88,6 +99,11 @@ const Top = styled.div`
           font-weight: 500;
           font-size: 0.9rem;
           margin-top: 4px;
+
+          @media (max-width: ${props =>
+              props.theme.breakpoints.mobile}) {
+            display: none;
+          }
         }
       } /* end li */
     } /* end ul */

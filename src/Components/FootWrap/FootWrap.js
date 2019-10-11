@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import FooterStatic from '../FooterStatic';
 
 const FootWrapContainer = styled.div`
-  background-color: blue;
+  /* background-color: blue; */
   background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%);
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
@@ -23,7 +23,7 @@ const FootWrap = React.forwardRef((props, ref) => {
     <FootWrapContainer>
       {props.children}
       <FooterViewport ref={ref}>
-        {/* <FooterStatic /> */}
+        <FooterStatic />
       </FooterViewport>
     </FootWrapContainer>
   );
