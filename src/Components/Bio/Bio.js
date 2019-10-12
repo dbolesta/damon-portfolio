@@ -9,11 +9,13 @@ const BioContainer = styled.div`
   justify-content: center;
   position: relative;
   overflow: hidden;
+  flex-direction: column;
 `;
 
 const BioWrapper = styled.div`
-  padding: 6rem 0;
-  width: 600px;
+  padding-top: 6rem;
+  /* width: 600px; */
+  max-width: 600px;
   z-index: 1;
 
   h1 {
@@ -48,6 +50,46 @@ const ColorSlice = styled.div`
     transform: rotate(${props => props.degValue}deg);
     transform-origin: ${props =>
       props.sideValue === 'left' ? 'top left' : 'bottom right'};
+  }
+`;
+
+const TechRow = styled.div`
+  width: 80%;
+  margin: 1rem 0 3rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    margin: 0;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    width: 95%;
+  }
+
+  ul {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    li {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 1.4rem;
+      }
+      span {
+        font-family: 'Varela Round';
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+    }
   }
 `;
 
@@ -98,7 +140,8 @@ const Bio = React.forwardRef((props, ref) => {
         </p>
       </BioWrapper>
 
-      <div>
+      <TechRow>
+        <h4>My Tech Stack</h4>
         <ul>
           {props.data && props.data[0]
             ? props.data[0].techs.map(t => {
@@ -112,7 +155,7 @@ const Bio = React.forwardRef((props, ref) => {
               })
             : null}
         </ul>
-      </div>
+      </TechRow>
 
       <ColorSlice
         colorValues={[colorArray[2], colorArray[3]]}
