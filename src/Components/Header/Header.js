@@ -5,11 +5,6 @@ const HeaderContainer = styled.div`
   background-color: transparent;
 `;
 
-const TopNavListContainer = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
 const TopNavList = styled.ul`
   list-style-type: none;
   display: flex;

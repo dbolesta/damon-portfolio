@@ -1,18 +1,12 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import WorkCard from '../WorkCard';
 
-// maybe use these if canvas fails..?
-import asteroid from '../../Images/asteroidtest3.svg';
-import asteroidRed from '../../Images/asteroidRed.svg';
-import asteroidBlue from '../../Images/asteroidBlue.svg';
-import asteroidYellow from '../../Images/asteroidYellow.svg';
-import asteroidGreen from '../../Images/asteroidGreen.svg';
-
 import WsBgAsteroids from '../WsBgAsteroids';
-import WsBgCircle from '../WsBgCircle';
 import WsBgPerspective from '../WsBgPerspective';
+
+import { generateKey } from '../../Utils/utils';
 
 const WorkStripeContainer = styled.div`
   text-align: left;
@@ -23,7 +17,6 @@ const WorkStripeContainer = styled.div`
 `;
 
 const WorkStripeName = styled.h2`
-  /* background-color: #565656; */
   color: ${props => props.textColor};
   display: inline-block;
   font-family: 'Varela Round';
@@ -67,74 +60,6 @@ const WorkCardsContainer = styled.div`
   justify-content: center;
 `;
 
-const asteroidAnim = (top, right, bottom, left) => keyframes`
-  0% {
-    top: 40%;
-    left: 20%;
-  }
-  50% {
-    top: 110%;
-    left: 110%;
-  }
-  51% {
-    top: -10%;
-    left: -10%;
-  }
-  100% {
-    top: 40%;
-    left: 20%;
-  }
-`;
-
-const AsteroidsContainer = styled.div`
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;
-
-  img {
-    position: absolute;
-    border: 1px solid red;
-    top: 10%;
-    left: 30%;
-
-    &:nth-of-type(1) {
-      /* top: 0%;
-      left: 10%; */
-      animation: ${asteroidAnim(null, null, null, null)} 4s infinite;
-      /* animation-delay: 0.3s; */
-    }
-    &:nth-of-type(2) {
-      top: 10%;
-      left: 30%;
-    }
-    &:nth-of-type(3) {
-      top: 25%;
-      left: 5%;
-    }
-    &:nth-of-type(4) {
-      top: 50%;
-      left: 85%;
-    }
-    &:nth-of-type(5) {
-      top: 7%;
-      left: 60%;
-    }
-  }
-
-  /* svg {
-    stroke: rgb(255, 255, 255);
-    stroke-width: 3px;
-    position: absolute;
-    border: 1px solid red;
-  } */
-`;
-
 const WorkStripe = React.forwardRef((props, ref) => {
   return (
     <WorkStripeContainer
@@ -153,7 +78,12 @@ const WorkStripe = React.forwardRef((props, ref) => {
       <WorkStripeWrapper>
         <WorkCardsContainer>
           {props.data.map(work => {
-            return <WorkCard data={work} />;
+            return (
+              <WorkCard
+                data={work}
+                key={generateKey(work.title[0].text.slice(0, 2))}
+              />
+            );
           })}
         </WorkCardsContainer>
       </WorkStripeWrapper>

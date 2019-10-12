@@ -82,10 +82,6 @@ const CubeWrapper = styled.div`
         left: 17px;
         transform: rotate(-45deg);
       }
-
-      /* &:nth-of-type(2) {
-        margin: 5px 0;
-      } */
     }
   }
 
@@ -95,9 +91,6 @@ const CubeWrapper = styled.div`
 `;
 
 const MobileMenuBurger = props => {
-  console.log('%c Mobile burger here...', 'font-size: 16px');
-  console.log(props);
-
   return (
     <CubeWrapper onClick={() => props.setIsOpen(!props.isOpen)}>
       <div className={'cube ' + (props.isOpen ? 'open' : '')}>

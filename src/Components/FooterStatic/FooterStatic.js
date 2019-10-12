@@ -2,11 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import {
   getRandomIntInclusive,
-  calculateVisibilityForFooter,
   getScrollPercent
 } from '../../Utils/utils';
-
-import Star from '../Star';
 
 import starSVG from '../../Images/star.svg';
 
@@ -65,8 +62,6 @@ const Mountain = styled.div`
   border-right: ${props => props.widthValue}vw solid transparent;
   border-bottom: ${props => props.heightValue}vh solid
     ${props => props.colorValue};
-  /* bottom: -${props =>
-    props.bottomValue ? props.bottomValue : 0}px; */
   bottom: 0;
   position: absolute;
   left: ${props => props.leftValue}%;
@@ -76,20 +71,18 @@ const Mountain = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  /* transition: all 0.3s ease-in-out; */
-
   a {
     color: white;
-    font-family: "Varela Round";
+    font-family: 'Varela Round';
     text-decoration: none;
     color: #f6dd3b;
-    text-shadow: 1px 1px 0px #FC2376;
+    text-shadow: 1px 1px 0px #fc2376;
     font-weight: 600;
     font-size: 1.4rem;
     transition: text-shadow 0.1s cubic-bezier(0.71, 0.21, 0.4, 0.83);
 
     &:hover {
-      text-shadow: 2px 2px 0px #FC2376;
+      text-shadow: 2px 2px 0px #fc2376;
     }
   }
 `;
@@ -107,12 +100,6 @@ const StarsContainer = styled.div`
 `;
 
 // use attrs to avoid styled-components warning about generating over 200 classes
-// const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
-//   style: {
-//     bottom: bottomValue + '%'
-//   }
-// }))`
-
 const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
   style: {
     bottom: bottomValue + '%'
@@ -123,10 +110,6 @@ const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
   right: 0;
   bottom: 0;
   height: 100%;
-
-  /* background-image: url(${starSVG}), url(${starSVG});
-  background-position: 0px 0, 5px 5px;
-  background-size: 10px 10px; */
 `;
 
 // prettier-ignore
@@ -200,7 +183,7 @@ const Footer = props => {
   const [percentScrolled, setPercentScrolled] = useState(0);
 
   // STAR DATA STATE
-  const [starData, setStarData] = useState(() => {
+  const [starData] = useState(() => {
     const starDataBuild = [];
     for (let x = 0; x < 69; x++) {
       starDataBuild.push({
@@ -215,7 +198,7 @@ const Footer = props => {
   });
 
   // FG and BG Mountain data
-  const [bgMtnData, setBgMtnData] = useState(() => {
+  const [bgMtnData] = useState(() => {
     const bgMtnDataBuild = [];
     for (let x = 0; x < 100; x += 10) {
       bgMtnDataBuild.push({
@@ -227,7 +210,7 @@ const Footer = props => {
     return bgMtnDataBuild;
   });
 
-  const [fgMtnData, setFgMtnData] = useState(() => {
+  const [fgMtnData] = useState(() => {
     const fgMtnDataBuild = [];
     for (let x = -5; x < 100; x += 10) {
       fgMtnDataBuild.push({

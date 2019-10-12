@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import imgPlaceholder from '../../Images/website_preview_placeholder_tall.png';
+import { generateKey } from '../../Utils/utils';
 
 const WorkCardContainer = styled.div`
   /* padding: 0.5rem; */
@@ -128,11 +128,6 @@ const Bottom = styled.div`
   height: 100%;
   justify-content: space-between;
 
-  .description-container {
-    p {
-    }
-  }
-
   .links-container {
     display: flex;
     align-items: center;
@@ -158,8 +153,6 @@ const WorkCard = props => {
     github_link
   } = props.data;
 
-  console.log(props.data);
-
   return (
     <WorkCardContainer category={category}>
       <WorkCardWrapper>
@@ -174,7 +167,7 @@ const WorkCard = props => {
               {tech.map(t => {
                 const { name, icon } = t;
                 return (
-                  <li>
+                  <li key={generateKey(name[0].text.slice(0, 2))}>
                     <img src={icon.url} alt={name[0].text} />
                     <span>{name[0].text}</span>
                   </li>

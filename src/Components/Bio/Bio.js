@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { setServers } from 'dns';
+import { generateKey } from '../../Utils/utils';
 
 const BioContainer = styled.div`
   background-color: #fafafa;
@@ -14,7 +14,6 @@ const BioContainer = styled.div`
 
 const BioWrapper = styled.div`
   padding-top: 6rem;
-  /* width: 600px; */
   max-width: 600px;
   z-index: 1;
 
@@ -32,7 +31,6 @@ const ColorSlice = styled.div`
     position: absolute;
     height: 80%;
     width: 180%;
-    /* opacity: 0.5; */
     mix-blend-mode: hard-light;
   }
 
@@ -99,11 +97,6 @@ const Bio = React.forwardRef((props, ref) => {
     return ['#6F308E', '#FFD330', '#EE4F2F', '#00A894'];
   });
 
-  if (props.data && props.data[0]) {
-    console.log('%c inside bio...', 'font-size: 16px');
-    console.log(props.data[0]);
-  }
-
   return (
     <BioContainer ref={ref}>
       {/* green red blue yellow */}
@@ -113,15 +106,6 @@ const Bio = React.forwardRef((props, ref) => {
         degValue={35}
       />
       <BioWrapper>
-        {/* <h1>Hi, I'm Damon.</h1>
-        <p>
-          I'm a NYC based web developer with a love of computer
-          technology, and solving complex problems.
-        </p>
-        <p>
-          I want you to believe that 'www' stands for "Wow, wonderful
-          website!"
-        </p> */}
         <h1>Hi, I'm Damon</h1>
         <p>
           I make websites and games with JavaScript. After studying
@@ -146,7 +130,7 @@ const Bio = React.forwardRef((props, ref) => {
             ? props.data[0].techs.map(t => {
                 const { tech_name: name, tech_icon: icon } = t;
                 return (
-                  <li>
+                  <li key={generateKey(name[0].text.slice(0, 2))}>
                     <img src={icon.url} alt={name[0].text} />
                     <span>{name[0].text}</span>
                   </li>

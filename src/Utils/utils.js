@@ -44,3 +44,8 @@ export function getScrollPercent() {
     ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
   );
 }
+
+// create random key for lists
+export const generateKey = pre => {
+  return `${pre}_${new Date().getTime()}`;
+};

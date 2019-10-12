@@ -3,7 +3,6 @@ import './App.css';
 
 import Header from './Components/Header';
 import WorkStripe from './Components/WorkStripe';
-import Footer from './Components/Footer';
 import Bio from './Components/Bio';
 
 import {
@@ -19,7 +18,6 @@ import ContentWrap from './Components/ContentWrap';
 import LeftColumn from './Components/LeftColumn';
 import SideHeader from './Components/SideHeader';
 import MobileMenu from './Components/MobileMenu';
-import MobileMenuBurger from './Components/MobileMenu/MobileMenuBurger';
 
 const GlobalStyle = createGlobalStyle`
   ${globalStyles}

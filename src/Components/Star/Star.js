@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getRandomIntInclusive } from '../../Utils/utils';
 
 // prettier-ignore
 const StarSVG = styled.svg`
