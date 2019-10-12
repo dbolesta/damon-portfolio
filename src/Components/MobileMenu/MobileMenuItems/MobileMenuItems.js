@@ -5,9 +5,11 @@ const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: greenyellow;
+  /* background: greenyellow; */
+  align-items: flex-start;
   text-align: right;
-  padding: 2rem;
+  padding: 0 2rem;
+  padding-top: 1rem;
   flex: 1 1 100%;
   transition: transform 0.3s cubic-bezier(0.71, 0.21, 0.4, 0.83);
   position: relative;
@@ -17,18 +19,21 @@ const StyledMenu = styled.nav`
   position: fixed;
   right: 0;
   top: 58px; /* height of burger box */
-  bottom: 0;
+  /* bottom: 0; */
   z-index: 3;
 
   span {
     font-size: 2rem;
     text-transform: uppercase;
-    padding: 2rem 0;
+    padding: 1rem 2rem;
+    margin: 1rem 0;
     font-weight: bold;
     letter-spacing: 0.5rem;
     text-decoration: none;
     transition: color 0.3s linear;
     cursor: pointer;
+    background-color: ${props => props.theme.colors.watermelon};
+    box-shadow: 10px 10px 54px -6px rgba(0, 0, 0, 0.75);
 
     &:hover {
       color: red;
