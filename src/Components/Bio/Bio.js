@@ -127,16 +127,15 @@ const Bio = React.forwardRef((props, ref) => {
           I make websites and games with JavaScript. After studying
           Web Applications and Development at NYU, I went on to work
           on various websites on platforms like Shopify and Wordpress,
-          create websites from scratch using plain JS or frameworks
-          like React, and create browser-based games with frameworks
-          like Phaser.
+          create websites ranging from vanilla JavaScript all the way
+          to libraries like React, and also make browser-based games
+          with the Phaser framework for fun.
         </p>
 
         <p>
           I believe the web is one of the most important platforms
-          ever created, and I am always eager to learn about new
-          technologies to help increase the web's usefulness and
-          versatility. Bio is WIP
+          ever created, and I am always eager to work hard and
+          increase the web's usefulness and versatility.
         </p>
       </BioWrapper>
 
