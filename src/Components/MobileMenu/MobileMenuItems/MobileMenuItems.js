@@ -30,13 +30,13 @@ const StyledMenu = styled.nav`
     font-weight: bold;
     letter-spacing: 0.5rem;
     text-decoration: none;
-    transition: color 0.3s linear;
+    transition: color 0.2s cubic-bezier(0.71, 0.21, 0.4, 0.83);
     cursor: pointer;
     background-color: ${props => props.theme.colors.watermelon};
     box-shadow: 10px 10px 54px -6px rgba(0, 0, 0, 0.75);
 
     &:hover {
-      color: red;
+      color: ${props => props.theme.colors.yellow};
     }
   }
 `;

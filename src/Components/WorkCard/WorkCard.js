@@ -89,8 +89,12 @@ const Top = styled.div`
         margin-right: 2rem;
 
         @media (max-width: ${props =>
-            props.theme.breakpoints.mobile}) {
+            props.theme.breakpoints.preMobile}) {
           margin-right: 1rem;
+        }
+
+        @media (max-width: ${props =>
+            props.theme.breakpoints.mobile}) {
           justify-content: flex-start;
         }
 
@@ -104,6 +108,10 @@ const Top = styled.div`
           font-size: 0.9rem;
           margin-top: 4px;
 
+          @media (max-width: ${props =>
+              props.theme.breakpoints.preMobile}) {
+            font-size: 0.7rem;
+          }
           @media (max-width: ${props =>
               props.theme.breakpoints.mobile}) {
             display: none;

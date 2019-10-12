@@ -79,6 +79,7 @@ const WsBgPerspective = () => {
       <Rect />
       <Rect />
       <Rect />
+      <Rect />
     </PerspectiveContainer>
   );
 };

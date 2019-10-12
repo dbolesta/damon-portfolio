@@ -27,7 +27,8 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   // data to store prismic api fetching
-  const [data, setData] = useState(null);
+  const [dataWork, setDataWork] = useState(null);
+  const [dataTech, setDataTech] = useState(null);
 
   // grab refs of each section we want to be able to scroll to on click
   const scrollBio = useRef(null);
@@ -37,8 +38,10 @@ function App() {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let data = await fetchData();
-      setData(data);
+      let prismicData = await fetchData();
+
+      setDataWork(prismicData.works);
+      setDataTech(prismicData.techs);
     }
 
     fetchMyAPI();
@@ -85,14 +88,17 @@ function App() {
                 }}
                 clickHandler={scrollToIt}
               />
-              <Bio ref={scrollBio} />
-              {data ? (
+              <Bio
+                ref={scrollBio}
+                data={dataTech ? dataTech : undefined}
+              />
+              {dataWork ? (
                 <React.Fragment>
                   <WorkStripe
                     bgColor={theme.colors.pink}
                     textColor={theme.colors.blue2}
                     category="Sites"
-                    data={data.sites}
+                    data={dataWork.sites}
                     sites
                     circleBg
                     ref={scrollSites}
@@ -101,7 +107,7 @@ function App() {
                     bgColor={theme.colors.asteroid.black}
                     textColor={theme.colors.asteroid.white}
                     category="Games"
-                    data={data.games}
+                    data={dataWork.games}
                     games
                     redDot
                     ref={scrollGames}

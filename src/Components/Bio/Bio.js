@@ -57,6 +57,11 @@ const Bio = React.forwardRef((props, ref) => {
     return ['#6F308E', '#FFD330', '#EE4F2F', '#00A894'];
   });
 
+  if (props.data && props.data[0]) {
+    console.log('%c inside bio...', 'font-size: 16px');
+    console.log(props.data[0]);
+  }
+
   return (
     <BioContainer ref={ref}>
       {/* green red blue yellow */}
@@ -92,6 +97,23 @@ const Bio = React.forwardRef((props, ref) => {
           versatility. Bio is WIP
         </p>
       </BioWrapper>
+
+      <div>
+        <ul>
+          {props.data && props.data[0]
+            ? props.data[0].techs.map(t => {
+                const { tech_name: name, tech_icon: icon } = t;
+                return (
+                  <li>
+                    <img src={icon.url} alt={name[0].text} />
+                    <span>{name[0].text}</span>
+                  </li>
+                );
+              })
+            : null}
+        </ul>
+      </div>
+
       <ColorSlice
         colorValues={[colorArray[2], colorArray[3]]}
         sideValue={'right'}
