@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/dbolesta/damon-portfolio/static/css/main.35f6fc64.chunk.css",
-    "main.js": "/dbolesta/damon-portfolio/static/js/main.a79cbae7.chunk.js",
-    "main.js.map": "/dbolesta/damon-portfolio/static/js/main.a79cbae7.chunk.js.map",
-    "runtime~main.js": "/dbolesta/damon-portfolio/static/js/runtime~main.2fece137.js",
-    "runtime~main.js.map": "/dbolesta/damon-portfolio/static/js/runtime~main.2fece137.js.map",
-    "static/js/2.92a3682d.chunk.js": "/dbolesta/damon-portfolio/static/js/2.92a3682d.chunk.js",
-    "static/js/2.92a3682d.chunk.js.map": "/dbolesta/damon-portfolio/static/js/2.92a3682d.chunk.js.map",
-    "index.html": "/dbolesta/damon-portfolio/index.html",
-    "precache-manifest.725c198ae1e177922a4bb8fb3595f78f.js": "/dbolesta/damon-portfolio/precache-manifest.725c198ae1e177922a4bb8fb3595f78f.js",
-    "service-worker.js": "/dbolesta/damon-portfolio/service-worker.js",
-    "static/css/main.35f6fc64.chunk.css.map": "/dbolesta/damon-portfolio/static/css/main.35f6fc64.chunk.css.map",
-    "static/media/star.svg": "/dbolesta/damon-portfolio/static/media/star.3cff9a2f.svg"
+    "main.css": "/damon-portfolio/static/css/main.35f6fc64.chunk.css",
+    "main.js": "/damon-portfolio/static/js/main.7a48f536.chunk.js",
+    "main.js.map": "/damon-portfolio/static/js/main.7a48f536.chunk.js.map",
+    "runtime~main.js": "/damon-portfolio/static/js/runtime~main.c2d52ace.js",
+    "runtime~main.js.map": "/damon-portfolio/static/js/runtime~main.c2d52ace.js.map",
+    "static/js/2.ac0bec56.chunk.js": "/damon-portfolio/static/js/2.ac0bec56.chunk.js",
+    "static/js/2.ac0bec56.chunk.js.map": "/damon-portfolio/static/js/2.ac0bec56.chunk.js.map",
+    "index.html": "/damon-portfolio/index.html",
+    "precache-manifest.1cd051708162779ec4193e8b9572af7f.js": "/damon-portfolio/precache-manifest.1cd051708162779ec4193e8b9572af7f.js",
+    "service-worker.js": "/damon-portfolio/service-worker.js",
+    "static/css/main.35f6fc64.chunk.css.map": "/damon-portfolio/static/css/main.35f6fc64.chunk.css.map",
+    "static/media/star.svg": "/damon-portfolio/static/media/star.3cff9a2f.svg"
   }
 }
