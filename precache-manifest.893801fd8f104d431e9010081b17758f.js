@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "58847d59292153abeaca9efbff1fd123",
+    "revision": "e5d70e183a921e7cbe483f8c4236578b",
     "url": "/damon-portfolio/index.html"
   },
   {
-    "revision": "aaaa8d54af3ed49b5cf0",
+    "revision": "39960004b6f919c799ff",
     "url": "/damon-portfolio/static/css/main.35f6fc64.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/damon-portfolio/static/js/2.ac0bec56.chunk.js"
   },
   {
-    "revision": "aaaa8d54af3ed49b5cf0",
-    "url": "/damon-portfolio/static/js/main.7a48f536.chunk.js"
+    "revision": "39960004b6f919c799ff",
+    "url": "/damon-portfolio/static/js/main.b54aca16.chunk.js"
   },
   {
     "revision": "667594421a885e5193b7",
