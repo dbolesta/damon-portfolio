@@ -25,6 +25,10 @@ const WorkCardContainer = styled.div`
   &:hover .img-container {
     transform: scale(1.1);
   }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    flex-grow: 1;
+  }
 `;
 
 const WorkCardWrapper = styled.div`
