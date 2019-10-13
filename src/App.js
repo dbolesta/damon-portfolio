@@ -5,10 +5,7 @@ import Header from './Components/Header';
 import WorkStripe from './Components/WorkStripe';
 import Bio from './Components/Bio';
 
-import {
-  createGlobalStyle,
-  ThemeProvider
-} from 'styled-components/macro';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { globalStyles } from './Styles/global';
 import { theme } from './Styles/theme';
 

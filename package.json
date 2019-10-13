@@ -2,7 +2,7 @@
   "name": "damon-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/dbolesta/damon-portfolio",
+  "homepage": "https://dbolesta.github.io/damon-portfolio",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "prismic-javascript": "^2.1.1",
