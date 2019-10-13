@@ -264,16 +264,16 @@ const Footer = props => {
 
   // bg
   for (let x = 0; x < bgMtnData.length; x++) {
-    if (x === 5) {
+    if (x === 6) {
       mountains.push(
         <Mountain
           key={x}
           colorValue="#322b61"
           widthValue={3}
-          heightValue={38}
-          leftValue={50}
+          heightValue={37}
+          leftValue={60}
         >
-          <a href="https://google.com">LinkedIn</a>
+          <a href="mailto:dbolesta@gmail.com">Contact</a>
         </Mountain>
       );
     } else {
@@ -299,13 +299,13 @@ const Footer = props => {
           key={x + 0.5}
           colorValue="#483d8b"
           widthValue={4}
-          heightValue={x === 3 ? 45 : 42.5}
+          heightValue={x === 3 ? 46 : 36}
           leftValue={x === 3 ? 25 : 65}
         >
           {x === 3 ? (
             <a href="https://github.com/dbolesta">GitHub</a>
           ) : (
-            <a href="mailto:dbolesta@gmail.com">Contact</a>
+            <span>&nbsp;</span>
           )}
         </Mountain>
       );
