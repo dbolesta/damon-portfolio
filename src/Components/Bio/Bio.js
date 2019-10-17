@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { generateKey } from '../../Utils/utils';
+
+import ColorTriangles from '../Backgrounds/ColorTriangles';
 
 const BioContainer = styled.div`
   background-color: #fafafa;
@@ -19,35 +21,6 @@ const BioWrapper = styled.div`
 
   h1 {
     margin-top: 0;
-  }
-`;
-
-// this is a mess and can and should be much better
-const ColorSlice = styled.div`
-  &:before,
-  &:after {
-    content: '';
-    ${props => props.sideValue}: 0;
-    position: absolute;
-    height: 80%;
-    width: 180%;
-    mix-blend-mode: hard-light;
-  }
-
-  &:before {
-    background-color: ${props => props.colorValues[0]};
-    ${props => (props.sideValue === 'left' ? 'top' : 'bottom')}: 0;
-    transform: rotate(-${props => props.degValue}deg);
-    transform-origin: ${props =>
-      props.sideValue === 'left' ? 'bottom left' : 'top right'};
-  }
-
-  &:after {
-    background-color: ${props => props.colorValues[1]};
-    ${props => (props.sideValue === 'left' ? 'bottom' : 'top')}: 0;
-    transform: rotate(${props => props.degValue}deg);
-    transform-origin: ${props =>
-      props.sideValue === 'left' ? 'top left' : 'bottom right'};
   }
 `;
 
@@ -92,19 +65,8 @@ const TechRow = styled.div`
 `;
 
 const Bio = React.forwardRef((props, ref) => {
-  // lazy initial state
-  const [colorArray] = useState(() => {
-    return ['#6F308E', '#FFD330', '#EE4F2F', '#00A894'];
-  });
-
   return (
     <BioContainer ref={ref}>
-      {/* green red blue yellow */}
-      <ColorSlice
-        colorValues={[colorArray[0], colorArray[1]]}
-        sideValue={'left'}
-        degValue={35}
-      />
       <BioWrapper>
         <h1>Hi, I'm Damon</h1>
         <p>
@@ -139,12 +101,7 @@ const Bio = React.forwardRef((props, ref) => {
             : null}
         </ul>
       </TechRow>
-
-      <ColorSlice
-        colorValues={[colorArray[2], colorArray[3]]}
-        sideValue={'right'}
-        degValue={35}
-      />
+      <ColorTriangles />
     </BioContainer>
   );
 });

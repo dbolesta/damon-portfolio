@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import MobileMenuItems from './MobileMenuItems';
-import MobileMenuBurger from './MobileMenuBurger';
+import Items from './Items';
+import Burger from './Burger';
 
 // https://css-tricks.com/hamburger-menu-with-a-side-of-react-hooks-and-styled-components/
 
@@ -44,12 +44,8 @@ const MobileMenu = props => {
         }
       }}
     >
-      <MobileMenuBurger isOpen={isOpen} setIsOpen={setIsOpen} />
-      <MobileMenuItems
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        {...props}
-      />
+      <Burger isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Items isOpen={isOpen} setIsOpen={setIsOpen} {...props} />
     </MobileMenuContainer>
   );
 };

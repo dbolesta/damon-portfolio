@@ -90,7 +90,7 @@ const CubeWrapper = styled.div`
   }
 `;
 
-const MobileMenuBurger = props => {
+const Burger = props => {
   return (
     <CubeWrapper onClick={() => props.setIsOpen(!props.isOpen)}>
       <div className={'cube ' + (props.isOpen ? 'open' : '')}>
@@ -108,4 +108,4 @@ const MobileMenuBurger = props => {
   );
 };
 
-export default MobileMenuBurger;
+export default Burger;

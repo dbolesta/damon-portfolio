@@ -41,12 +41,7 @@ const StyledMenu = styled.nav`
   }
 `;
 
-const MobileMenuItems = ({
-  isOpen,
-  clickHandler,
-  scrollRefs,
-  setIsOpen
-}) => {
+const Items = ({ isOpen, clickHandler, scrollRefs, setIsOpen }) => {
   return (
     <StyledMenu isOpen={isOpen}>
       <span
@@ -85,4 +80,4 @@ const MobileMenuItems = ({
   );
 };
 
-export default MobileMenuItems;
+export default Items;

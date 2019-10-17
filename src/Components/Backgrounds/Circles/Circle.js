@@ -42,7 +42,7 @@ const CircleBg = styled.div`
   }
 `;
 
-const WsBgCircle = () => {
+const Circles = () => {
   return (
     <CircleBg>
       <span></span>
@@ -52,4 +52,4 @@ const WsBgCircle = () => {
   );
 };
 
-export default WsBgCircle;
+export default Circles;

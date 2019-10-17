@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import WorkCard from '../WorkCard';
 
-import WsBgAsteroids from '../WsBgAsteroids';
-import WsBgPerspective from '../WsBgPerspective';
+import Asteroids from '../Backgrounds/Asteroids';
+import Perspective from '../Backgrounds/Perspective';
 
 import { generateKey } from '../../Utils/utils';
 
@@ -88,9 +88,9 @@ const WorkStripe = React.forwardRef((props, ref) => {
         </WorkCardsContainer>
       </WorkStripeWrapper>
 
-      {props.circleBg ? <WsBgPerspective /> : null}
+      {props.circleBg ? <Perspective /> : null}
 
-      {props.games ? <WsBgAsteroids /> : null}
+      {props.games ? <Asteroids /> : null}
     </WorkStripeContainer>
   );
 });

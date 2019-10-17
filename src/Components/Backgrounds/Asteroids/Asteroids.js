@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { getRandomIntInclusive } from '../../Utils/utils';
+import { getRandomIntInclusive } from '../../../Utils/utils';
 
 // helpful article
 // https://philna.sh/blog/2018/09/27/techniques-for-animating-on-the-canvas-in-react/

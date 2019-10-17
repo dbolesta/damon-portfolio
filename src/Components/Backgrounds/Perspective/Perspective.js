@@ -69,7 +69,7 @@ const Rect = styled.div`
   }
 `;
 
-const WsBgPerspective = () => {
+const Perspective = () => {
   return (
     <PerspectiveContainer>
       <Rect />
@@ -84,4 +84,4 @@ const WsBgPerspective = () => {
   );
 };
 
-export default WsBgPerspective;
+export default Perspective;
