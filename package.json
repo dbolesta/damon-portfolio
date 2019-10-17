@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://dbolesta.github.io/damon-portfolio",
+  "//": [
+    "comments here",
+    "use `npm run deploy` to push to gh-pages repo",
+    "https://medium.com/the-andela-way/how-to-deploy-your-react-application-to-github-pages-in-less-than-5-minutes-8c5f665a2d2a"
+  ],
   "dependencies": {
     "gh-pages": "^2.1.1",
     "prismic-javascript": "^2.1.1",
