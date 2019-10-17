@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { generateKey } from '../../Utils/utils';
 
-import ColorTriangles from '../Backgrounds/ColorTriangles';
+import Pillars from '../Backgrounds/Pillars';
 
 const BioContainer = styled.div`
   background-color: #fafafa;
+  /* background-color: #262626; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,6 +19,15 @@ const BioWrapper = styled.div`
   padding-top: 6rem;
   max-width: 600px;
   z-index: 1;
+
+  h1,
+  p {
+    /* text-shadow: -1px -1px 0 #fafafa, 0 -1px 0 #fafafa,
+      1px -1px 0 #fafafa, 1px 0 0 #fafafa, 1px 1px 0 #fafafa,
+      0 1px 0 #fafafa, -1px 1px 0 #fafafa, -1px 0 0 #fafafa; */
+
+    /* color: #dedede; */
+  }
 
   h1 {
     margin-top: 0;
@@ -101,7 +111,7 @@ const Bio = React.forwardRef((props, ref) => {
             : null}
         </ul>
       </TechRow>
-      <ColorTriangles />
+      <Pillars />
     </BioContainer>
   );
 });
