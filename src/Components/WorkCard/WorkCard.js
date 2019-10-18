@@ -162,7 +162,9 @@ const WorkCard = props => {
       <WorkCardWrapper>
         <Top>
           <div className="img-container">
-            <img src={image.url} alt={image.alt} />
+            <a href={site_link.url}>
+              <img src={image.url} alt={image.alt} />
+            </a>
           </div>
 
           <div className="title-tech">

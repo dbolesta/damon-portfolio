@@ -17,9 +17,10 @@ const FooterContainer = styled.footer`
   ); */
   height: 100%;
 
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+  /* @media (max-width: ${props =>
+    props.theme.breakpoints.mobile}) { */
     background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%);
-  }
+  /* } */
 `;
 
 const FooterArtContainer = styled.div`

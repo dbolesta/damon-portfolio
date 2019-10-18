@@ -33,7 +33,7 @@ const WorkStripeName = styled.h2`
   /* sites specific styling */
   ${props =>
     props.sites
-      ? `-webkit-text-fill-color: #ff5959;
+      ? `color: #ff5959;
   /* -webkit-background-clip: text; */
   background-color: #11e8df;
   /* mix-blend-mode: difference; */

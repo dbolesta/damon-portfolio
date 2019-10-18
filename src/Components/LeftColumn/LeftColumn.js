@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const LeftColumnContainer = styled.div`
   /* background-color: blue;
   background: linear-gradient(-6deg, #3a4c54 0%, #011d35 100%); */
+  background: linear-gradient(-6deg, #011d35 0%, #01111f 100%);
   width: 20%;
-  z-index: 3;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     display: none;
@@ -17,17 +17,18 @@ const LeftColumnContainer = styled.div`
 const LeftColumnContent = styled.div`
   position: fixed;
   width: inherit;
+  z-index: 3;
 `;
 // #ae4c00 0%,
 
 const LeftNav = styled.span`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
 
   span {
     background-color: ${props => props.theme.colors.watermelon};
-    padding: 0.2rem;
+    padding: 0.5rem;
     margin: 10px;
     cursor: pointer;
 
