@@ -50,7 +50,7 @@ const Pillar = styled.div`
     transform: perspective(167px) rotateX(55deg) skew(55deg, 17deg);
   }
   &:nth-of-type(6) {
-    top: 30%;
+    top: 19%;
     left: 35%;
     transform: perspective(147px) rotateY(47deg) skew(77deg, 7deg);
     width: 114%;

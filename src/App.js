@@ -90,7 +90,7 @@ function App() {
               {dataWork ? (
                 <React.Fragment>
                   <WorkStripe
-                    bgColor={theme.colors.pink}
+                    bgColor="linear-gradient(141deg, rgba(15,66,114,1) 2%, rgba(138,121,213,1) 99%);" //146
                     textColor={theme.colors.blue2}
                     category="Sites"
                     data={dataWork.sites}
