@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/damon-portfolio/precache-manifest.a1f92d1166e201e12098f20981905972.js"
+  "/damon-portfolio/precache-manifest.7a15b0b85be382631225e7544cf31922.js"
 );
 
 self.addEventListener('message', (event) => {
