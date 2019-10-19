@@ -294,16 +294,16 @@ const Footer = props => {
   // https://stackoverflow.com/questions/25835591/how-to-calculate-percentage-between-the-range-of-two-values-a-third-value-is/25835683
   // fg
   for (let x = 0; x < fgMtnData.length; x++) {
-    if (x === 3 || x === 7) {
+    if (x === 4 || x === 7) {
       mountains.push(
         <Mountain
           key={x + 0.5}
           colorValue="#483d8b"
           widthValue={4}
-          heightValue={x === 3 ? 46 : 36}
-          leftValue={x === 3 ? 25 : 65}
+          heightValue={x === 4 ? 46 : 36}
+          leftValue={x === 4 ? 35 : 65}
         >
-          {x === 3 ? (
+          {x === 4 ? (
             <a href="https://github.com/dbolesta">GitHub</a>
           ) : (
             <span>&nbsp;</span>
