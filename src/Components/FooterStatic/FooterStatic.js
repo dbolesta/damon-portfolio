@@ -5,6 +5,10 @@ import {
   getScrollPercent
 } from '../../Utils/utils';
 
+import Moon from './Moon';
+import moonlight1 from '../../Audio/moonlight1.wav';
+import rebecca from '../../Audio/rebecca.wav';
+
 import starSVG from '../../Images/star.svg';
 
 const FooterContainer = styled.footer`
@@ -26,23 +30,6 @@ const FooterContainer = styled.footer`
 const FooterArtContainer = styled.div`
   position: relative;
   height: 100%;
-`;
-
-// ****
-// Moon
-// ****
-
-const MoonTwo = styled.div`
-  position: absolute;
-  display: block;
-  right: 5%;
-  top: 15%;
-  margin: 2rem;
-  width: 10rem;
-  height: 10rem;
-  background-color: transparent;
-  box-shadow: inset -37px -9px 0 15px #f3d076;
-  border-radius: 50%;
 `;
 
 // ****
@@ -347,7 +334,7 @@ const Footer = props => {
           </StarsParallax>
         </StarsContainer>
 
-        <MoonTwo />
+        <Moon url={moonlight1} rebecca={rebecca} />
 
         <CloudsContainer>{clouds}</CloudsContainer>
 
