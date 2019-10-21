@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SideHeaderContainer = styled.div`
-  background-color: #92c3ec;
+  /* background-color: #92c3ec; */
 
   h1 {
     margin: 0;
-    font-family: 'Varela Round';
+    font-family: 'Tenor Sans'; /* Varela Round */
     font-size: 3rem;
     font-weight: 100;
     /* padding-top: 2rem; */

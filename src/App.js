@@ -31,6 +31,7 @@ function App() {
   const scrollGames = useRef(null);
   const scrollFooter = useRef(null);
 
+  // fetch prismic info
   useEffect(() => {
     async function fetchMyAPI() {
       let prismicData = await fetchData();

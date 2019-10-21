@@ -140,8 +140,18 @@ const Bottom = styled.div`
     a {
       text-decoration: none;
       font-family: 'Varela Round';
-      color: #f6dd3b;
-      background-color: #94c4ea;
+      /* color: #f6dd3b; */
+      /* background-color: #94c4ea; */
+      padding: 1px 5px;
+      border-radius: 4px;
+      background-color: #f92a77;
+      color: #011220;
+
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: ${props => props.theme.colors.yellow};
+      }
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const LeftColumnContainer = styled.div`
@@ -25,12 +25,18 @@ const LeftNav = styled.span`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  transition: transform 0.3s cubic-bezier(0.71, 0.21, 0.4, 0.83);
+  transform: ${props =>
+    props.headerInView ? 'translateX(-100%)' : 'translateX(0%)'};
+  /* transform: translateX(-100%); */
 
   span {
     background-color: ${props => props.theme.colors.watermelon};
     padding: 0.5rem;
     margin: 10px;
     cursor: pointer;
+    font-family: 'Varela Round';
+    border-radius: 5px;
 
     transition: all 0.2s ease-in-out;
 
@@ -46,11 +52,34 @@ const LeftNav = styled.span`
 `;
 
 const LeftColumn = props => {
+  // detect if header is in view so we can scroll sidebar nav in or not
+  const [headerInView, setHeaderInView] = useState(true);
+
+  // scroll listener?
+  useEffect(() => {
+    const handleScroll = () => {
+      let heightOfHeader = 70; // better than forwarding refs just for this, we can fake it
+      let windowY = window.scrollY;
+
+      if (windowY > heightOfHeader) {
+        setHeaderInView(false);
+      } else {
+        setHeaderInView(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <LeftColumnContainer>
       <LeftColumnContent>
         {props.children}
-        <LeftNav>
+        <LeftNav headerInView={headerInView}>
           <span
             onClick={() =>
               props.clickHandler(props.scrollRefs.scrollBio)

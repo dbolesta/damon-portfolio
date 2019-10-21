@@ -2,16 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
-  background-color: transparent;
+  background-color: #01111f;
 `;
 
 const TopNavList = styled.ul`
   list-style-type: none;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding-left: 0;
   margin: 0;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    justify-content: flex-start;
+  }
 `;
 
 const TopNavItem = styled.li`
@@ -43,6 +47,7 @@ const TopNavItem = styled.li`
       cursor: auto;
       display: inline-block;
       color: ${props => props.theme.colors.yellow};
+      font-family: 'Tenor Sans';
     }
   }
 `;

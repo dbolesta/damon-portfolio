@@ -5,6 +5,7 @@ export const globalStyles = css`
   @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Tenor+Sans&display=swap');
 
   ${normalize}
 
