@@ -2,7 +2,6 @@
   "name": "damon-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dbolesta.github.io/damon-portfolio",
   "//": [
     "comments here",
     "use `npm run deploy` to push to gh-pages repo",
