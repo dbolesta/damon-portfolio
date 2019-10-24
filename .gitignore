@@ -24,3 +24,5 @@ yarn-error.log*
 
 # damon
 /psds
+# Local Netlify folder
+.netlify

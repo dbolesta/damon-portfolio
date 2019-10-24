@@ -78,7 +78,7 @@ const Bio = React.forwardRef((props, ref) => {
   return (
     <BioContainer ref={ref}>
       <BioWrapper>
-        <h1>Hi, I'm Damon</h1>
+        <h1>Hi, I'm Damon Bolesta</h1>
         <p>
           I make websites and games with JavaScript. After studying
           Web Applications and Development at NYU, I went on to work
