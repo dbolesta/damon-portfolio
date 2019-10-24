@@ -27,6 +27,8 @@ const useAudio = (url, rebecca) => {
   let [playCount, setPlayCount] = useState(0);
   audio2.volume = 0.5;
 
+  console.log('Use Audio Running');
+
   const toggle = () => {
     if (playCount === 0) {
       console.log('a flower between two chasms...');
@@ -36,6 +38,7 @@ const useAudio = (url, rebecca) => {
   };
 
   useEffect(() => {
+    console.log('useEffect Running!');
     playing ? audio.play() : audio.pause();
 
     if (playCount <= 1) {
@@ -43,13 +46,13 @@ const useAudio = (url, rebecca) => {
         playing ? audio2.play() : audio2.pause();
       }, 2200);
     }
-  }, [playing]);
+  }, [playing, audio, audio2, playCount]);
 
-  return [playing, toggle];
+  return [toggle];
 };
 
 const Moon = ({ url, rebecca }) => {
-  const [playing, toggle] = useAudio(url, rebecca);
+  const [toggle] = useAudio(url, rebecca);
 
   return (
     <>

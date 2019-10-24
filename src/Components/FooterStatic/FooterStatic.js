@@ -5,9 +5,8 @@ import {
   getScrollPercent
 } from '../../Utils/utils';
 
-import Moon from './Moon';
-import moonlight1 from '../../Audio/moonlight1.wav';
-import rebecca from '../../Audio/rebecca.wav';
+// import Moon from './Moon';
+import MoonTwo from './MoonTwo';
 
 import starSVG from '../../Images/star.svg';
 
@@ -334,7 +333,9 @@ const Footer = props => {
           </StarsParallax>
         </StarsContainer>
 
-        <Moon url={moonlight1} rebecca={rebecca} />
+        {/* <Moon url={moonlight1} rebecca={rebecca} /> */}
+        <MoonTwo />
+        {/* <MoonThree /> */}
 
         <CloudsContainer>{clouds}</CloudsContainer>
 
