@@ -37,6 +37,7 @@ const LeftNav = styled.span`
     cursor: pointer;
     font-family: 'Varela Round';
     border-radius: 5px;
+    box-shadow: ${props => props.theme.boxShadow};
 
     transition: all 0.2s ease-in-out;
 

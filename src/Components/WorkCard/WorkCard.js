@@ -146,6 +146,7 @@ const Bottom = styled.div`
       border-radius: 4px;
       background-color: #f92a77;
       color: #011220;
+      box-shadow: ${props => props.theme.boxShadow};
 
       transition: color 0.2s ease-in-out;
 
