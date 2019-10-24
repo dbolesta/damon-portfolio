@@ -8,7 +8,6 @@
     "https://medium.com/the-andela-way/how-to-deploy-your-react-application-to-github-pages-in-less-than-5-minutes-8c5f665a2d2a"
   ],
   "dependencies": {
-    "gh-pages": "^2.1.1",
     "prismic-javascript": "^2.1.1",
     "prismic-reactjs": "^1.1.0",
     "react": "^16.9.0",
