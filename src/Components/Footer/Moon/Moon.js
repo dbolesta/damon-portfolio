@@ -48,7 +48,7 @@ const SecretPause = styled.div`
   /* background-color: grey; */
 `;
 
-const Moon = styled.div`
+const SecretMoon = styled.div`
   width: 10rem;
   height: 10rem;
   background-color: transparent;
@@ -105,7 +105,7 @@ const useAudio = (audio1Src, audio2Src) => {
   return [toggle, setAudio1Ref, setAudio2Ref, playing];
 };
 
-const MoonTwo = () => {
+const Moon = () => {
   const [toggle, setAudio1Ref, setAudio2Ref, playing] = useAudio(
     audio1,
     audio2
@@ -113,12 +113,12 @@ const MoonTwo = () => {
 
   return (
     <MoonContainer>
-      <Moon onClick={toggle} playing={playing}>
+      <SecretMoon onClick={toggle} playing={playing}>
         <SecretPause>
           <span />
           <span />
         </SecretPause>
-      </Moon>
+      </SecretMoon>
 
       <audio ref={c => setAudio1Ref(c)} src={audio1} />
       <audio ref={c => setAudio2Ref(c)} src={audio2} />
@@ -126,4 +126,4 @@ const MoonTwo = () => {
   );
 };
 
-export default MoonTwo;
+export default Moon;

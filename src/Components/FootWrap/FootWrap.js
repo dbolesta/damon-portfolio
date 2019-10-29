@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import FooterStatic from '../FooterStatic';
+import Footer from '../Footer';
 
 const FootWrapContainer = styled.div`
   /* background-color: blue; */
@@ -12,7 +12,6 @@ const FootWrapContainer = styled.div`
     width: 100%;
   }
 `;
-// #ae4c00 0%,
 
 const FooterViewport = styled.div`
   height: 100vh;
@@ -24,7 +23,7 @@ const FootWrap = React.forwardRef((props, ref) => {
     <FootWrapContainer>
       {props.children}
       <FooterViewport ref={ref}>
-        <FooterStatic />
+        <Footer />
       </FooterViewport>
     </FootWrapContainer>
   );
