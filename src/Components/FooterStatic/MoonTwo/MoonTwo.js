@@ -57,7 +57,7 @@ const Moon = styled.div`
   box-shadow: inset -37px -9px 0 15px #f3d076;
 
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 
   ${({ playing }) =>
@@ -69,7 +69,7 @@ const Moon = styled.div`
 
   ${SecretPause} {
     transform: ${props =>
-      props.playing ? 'scale(1.5)' : 'scale(0)'}; */
+      props.playing ? 'scale(1.5)' : 'scale(0)'};
   }
 `;
 

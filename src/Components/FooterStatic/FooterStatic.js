@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import {
-  getRandomIntInclusive,
-  getScrollPercent
-} from '../../Utils/utils';
+import { getRandomIntInclusive } from '../../Utils/utils';
 
 // import Moon from './Moon';
 import MoonTwo from './MoonTwo';
-
-import starSVG from '../../Images/star.svg';
+import StarsParallax from './StarsParallax';
 
 const FooterContainer = styled.footer`
   /* background-color: hsl(-90, 90%, 24%); */
@@ -74,43 +70,6 @@ const Mountain = styled.div`
   }
 `;
 
-// ****
-// Stars
-// ****
-
-const StarsContainer = styled.div`
-  left: 0;
-  right: 0;
-  top: 0;
-  position: absolute;
-  height: 90%;
-`;
-
-// use attrs to avoid styled-components warning about generating over 200 classes
-const StarsParallax = styled.div.attrs(({ bottomValue }) => ({
-  style: {
-    bottom: bottomValue + '%'
-  }
-}))`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-`;
-
-// prettier-ignore
-const StarImg = styled.img`
-  position: absolute;
-  top: ${props => props.topValue}%;
-  left: ${props => props.leftValue}%;
-  opacity: 0.${props => props.opacityValue};
-  transform: rotate(${props => props.rotateValue}deg);
-  width: ${props => props.sizeValue}px;
-
-  transition: all 0.5s ease-in-out;
-`;
-
 // ***
 // Clouds
 // ***
@@ -166,24 +125,6 @@ const Footer = props => {
   // state and stuff
   const footerRef = useRef();
 
-  // keeps track of how much percentage of the page has been scrolled
-  const [percentScrolled, setPercentScrolled] = useState(0);
-
-  // STAR DATA STATE
-  const [starData] = useState(() => {
-    const starDataBuild = [];
-    for (let x = 0; x < 69; x++) {
-      starDataBuild.push({
-        topValue: getRandomIntInclusive(1, 99),
-        leftValue: getRandomIntInclusive(1, 99),
-        opacityValue: getRandomIntInclusive(4, 9),
-        sizeValue: getRandomIntInclusive(3, 15), // 9, 23
-        rotateValue: getRandomIntInclusive(0, 72) // 72deg of rotation is max of visible difference for a 5 point star
-      });
-    }
-    return starDataBuild;
-  });
-
   // FG and BG Mountain data
   const [bgMtnData] = useState(() => {
     const bgMtnDataBuild = [];
@@ -209,36 +150,6 @@ const Footer = props => {
     }
     return fgMtnDataBuild;
   });
-
-  // scroll state updates & event listener
-  useEffect(() => {
-    const handleScroll = () => {
-      // uses util
-      setPercentScrolled(getScrollPercent());
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // create stars
-  const randStars = [];
-  for (let x = 0; x < starData.length; x++) {
-    randStars.push(
-      <StarImg
-        key={x}
-        topValue={starData[x] && starData[x].topValue}
-        leftValue={starData[x] && starData[x].leftValue}
-        opacityValue={starData[x] && starData[x].opacityValue}
-        sizeValue={starData[x] && starData[x].sizeValue}
-        rotateValue={starData[x] && starData[x].rotateValue} // 72deg of rotation is max of visible difference for a 5 point star
-        src={starSVG}
-      />
-    );
-  }
 
   // create clouds
   const clouds = [];
@@ -315,23 +226,7 @@ const Footer = props => {
   return (
     <FooterContainer ref={footerRef}>
       <FooterArtContainer>
-        <StarsContainer>
-          <StarsParallax
-            bottomValue={(percentScrolled * (0 - 150)) / 100 + 150} //75
-          >
-            {randStars.slice(0, 23)}
-          </StarsParallax>
-          <StarsParallax
-            bottomValue={(percentScrolled * (0 - 300)) / 100 + 300} //250
-          >
-            {randStars.slice(24, 46)}
-          </StarsParallax>
-          <StarsParallax
-            bottomValue={(percentScrolled * (0 - 450)) / 100 + 450} //225
-          >
-            {randStars.slice(47, 69)}
-          </StarsParallax>
-        </StarsContainer>
+        <StarsParallax />
 
         {/* <Moon url={moonlight1} rebecca={rebecca} /> */}
         <MoonTwo />
