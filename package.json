@@ -4,8 +4,13 @@
   "private": true,
   "//": [
     "comments here",
-    "use `npm run deploy` to push to gh-pages repo",
-    "https://medium.com/the-andela-way/how-to-deploy-your-react-application-to-github-pages-in-less-than-5-minutes-8c5f665a2d2a"
+    "use `npm run deploy` to push to gh-pages repo (THIS IS NO LONGER ACCURATE",
+    "https://medium.com/the-andela-way/how-to-deploy-your-react-application-to-github-pages-in-less-than-5-minutes-8c5f665a2d2a",
+    "...",
+    "to push live (on netlify host)",
+    "simply push from the netlify-deploy branch",
+    "work on master to avoid pushing to production",
+    "ideally keep the two merged"
   ],
   "dependencies": {
     "prismic-javascript": "^2.1.1",
