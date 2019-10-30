@@ -1,12 +1,12 @@
 // random number where the provided min/max numbers are eligible for selection
-// optional 3rd param, if false, will return 1 if value is 0 (doesn't allow 0 to be an answer)
+// optional 3rd param, if false, will not allow 0 to be an answer (by running the function again)
 export const getRandomIntInclusive = (min, max, allowZero = true) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   let value = Math.floor(Math.random() * (max - min + 1)) + min;
 
   if (value === 0 && !allowZero) {
-    return value + 1;
+    return getRandomIntInclusive(min, max, false);
   } else {
     return value;
   }
