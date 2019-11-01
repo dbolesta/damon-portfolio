@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
+import ReactGA from 'react-ga';
+
 import Header from './Components/Header';
 import WorkStripe from './Components/WorkStripe';
 import Bio from './Components/Bio';
@@ -16,11 +18,19 @@ import LeftColumn from './Components/LeftColumn';
 import SideHeader from './Components/SideHeader';
 import MobileMenu from './Components/MobileMenu';
 
+function initializeAnalytics() {
+  ReactGA.initialize('UA-151346804-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
+
 const GlobalStyle = createGlobalStyle`
   ${globalStyles}
 `;
 
 function App() {
+  // start google analytics
+  initializeAnalytics();
+
   // data to store prismic api fetching
   const [dataWork, setDataWork] = useState(null);
   const [dataTech, setDataTech] = useState(null);
