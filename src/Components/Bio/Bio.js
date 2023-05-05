@@ -96,7 +96,7 @@ const Bio = React.forwardRef((props, ref) => {
       </BioWrapper>
 
       <TechRow>
-        <h4>My Tech Stack</h4>
+        <h4>Tools & Technologies</h4>
         <ul>
           {props.data && props.data[0]
             ? props.data[0].techs.map(t => {
