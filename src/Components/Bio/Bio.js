@@ -16,7 +16,7 @@ const BioContainer = styled.div`
 `;
 
 const BioWrapper = styled.div`
-  padding-top: 6rem;
+  padding: 6rem 1rem 0;
   max-width: 600px;
   z-index: 1;
 

@@ -48,7 +48,7 @@ const Top = styled.div`
 
   .img-container {
     box-shadow: 4px 13px 30px 1px rgba(56, 56, 56, 0.2);
-    border-radius: 25px;
+    border-radius: 13px;
     overflow: hidden;
     flex-basis: 30%;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
