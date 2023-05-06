@@ -54,12 +54,14 @@ const TechRow = styled.div`
     padding-left: 0;
     list-style: none;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
     li {
       flex-direction: column;
       display: flex;
       align-items: center;
+      margin: 0.5rem 1rem;
 
       img {
         width: 1.4rem;
@@ -80,18 +82,16 @@ const Bio = React.forwardRef((props, ref) => {
       <BioWrapper>
         <h1>Hi, I'm Damon Bolesta</h1>
         <p>
-          I make websites and games with JavaScript. After studying
-          Web Applications and Development at NYU, I went on to work
-          on various websites on platforms like Shopify and Wordpress,
-          create websites ranging from vanilla JavaScript all the way
-          to libraries like React, and also make browser-based games
-          with the Phaser framework for fun.
+          I'm a software engineer specializing in both fullstack web development 
+          and game development. I am passionate about creating software and applications 
+          that are helpful, meaningful, and - ideally - joyful. I find working with 
+          others who feel the same to be energizing.
         </p>
 
         <p>
-          I believe the web is one of the most important platforms
-          ever created, and I am always eager to work hard and
-          increase the web's usefulness and versatility.
+          I believe the web is one of the most important platforms 
+          ever created, and I am always eager to work hard, learn 
+          more each day, and create remarkable things for it.
         </p>
       </BioWrapper>
 
