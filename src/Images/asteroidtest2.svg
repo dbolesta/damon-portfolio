@@ -1,54 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  
+  
+  
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  
+  
    version="1.1"
    id="svg79"
-   sodipodi:docname="asteroidtest2.svg"
+  
    width="104.07343"
    height="102.316"
-   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+  
    style="fill:#eddd85">
-  <metadata
-     id="metadata85">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs83" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1022"
-     inkscape:window-height="646"
-     id="namedview81"
-     showgrid="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="-44.912778"
-     inkscape:cy="84.619386"
-     inkscape:window-x="96"
-     inkscape:window-y="17"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg79"
-     inkscape:pagecheckerboard="true" />
+  
+  
+  
   <polygon
      id="polygon55"
      points="93.540222,28.176758 125,23.849107 160.54066,15.617082 174.55401,56.794754 220.0005,55.978099 234.03861,89.571208 210.01588,125 233.61857,160.29231 214.37424,189.93419 186.1423,209.15515 161.8649,238.4585 125,216.63509 94.728873,218.16495 57.31962,218.15405 54.249178,176.40348 27.960677,156.52999 37.875779,125 7.650454,86.870821 47.978518,69.040618 74.003311,54.80908 "
